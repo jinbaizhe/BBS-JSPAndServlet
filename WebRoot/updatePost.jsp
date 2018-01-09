@@ -20,7 +20,6 @@
 </script>
 <%
     final int max_upload_image_num=3;
-    String user_id=request.getParameter("userid");
     String post_id=request.getParameter("postid");
     String main_forum="",sub_forum="";
     String title="",content="";
@@ -85,8 +84,8 @@
     <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
     <link href="css/post-detail.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
+ <jsp:include page="head.jsp"/>
 <body>
 <div class="container" style="margin-top: 50px" >
     <div class="row">
@@ -118,7 +117,6 @@
                     </li>
                     <div style="float:right;margin: 20px auto">
                         <input type="hidden" name="postid" value=<%=post_id%>>
-                        <input type="hidden" name="userid" value='1'>
                         <input type="submit" class="btn btn-primary" style="width: 80px;" value="Ìá½»ÐÞ¸Ä">
                     </div>
                     <div style="float:right;margin: 20px auto;margin-right: 50px">
@@ -141,3 +139,4 @@
 
 </body>
 </html>
+ <jsp:include page="bottom.jsp"/>

@@ -7,7 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
+import data.LoginBean;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -21,16 +25,22 @@ public class star extends HttpServlet {
         response.setContentType("text/html;charset=GB2312");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time = format.format(Calendar.getInstance().getTime());
-        String userid = "1";
+        String user_id = "";
         String postid = request.getParameter("postid");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession(true);
+        LoginBean login = (LoginBean)session.getAttribute("loginBean");
+        if(login==null)
+        	response.sendRedirect("Login.jsp");
+        else
+        	user_id=String.valueOf(login.getId());
         try
         {
             Context initCtx = new InitialContext();
             DataSource ds = (DataSource) initCtx.lookup("java:comp/env/jdbc/db");
             Connection connection = ds.getConnection();
             PreparedStatement statement = connection.prepareStatement("insert into favourite(userid,postid,time) values(?,?,?)");
-            statement.setString(1, userid);
+            statement.setString(1, user_id);
             statement.setString(2, postid);
             statement.setString(3, time);
             statement.execute();

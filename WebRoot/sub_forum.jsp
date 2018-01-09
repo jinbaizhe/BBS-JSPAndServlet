@@ -8,12 +8,13 @@
 <%@ page contentType="text/html;charset=gb2312" language="java" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.naming.*,javax.sql.*" %>
+
 <html>
   <head>
     <title>$Title$</title>
     <link href="css/index.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
+   <jsp:include page="head.jsp"/>
   <body>
   <%
     int totalPostNum,totalPageNum,pageSize=2,pageNum,sub_id;
@@ -142,7 +143,6 @@
     </div>
   </div>
 </div>
-
-
   </body>
 </html>
+ <jsp:include page="bottom.jsp"/>

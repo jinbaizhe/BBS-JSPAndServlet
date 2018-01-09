@@ -14,8 +14,8 @@
     <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
     <link href="css/post-detail.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
+ <jsp:include page="head.jsp"/>
 <body>
 <script type="text/javascript">
     function getTitleAndContent(){
@@ -26,7 +26,6 @@
 </script>
 <%
     final int max_upload_image_num=3;
-    String user_id=request.getParameter("userid");
     String post_id=request.getParameter("postid");
     String followpost_id=request.getParameter("followpostid");
     Context initCtx = new InitialContext();
@@ -89,7 +88,7 @@
                     </li>
                     <li class="list-group-item">
                         <h4><b>帖子标题</b></h4>
-                        <input type="text" id="title" name="title" value="<%=post_title%>" class="form-control" >
+                        <p style="font-size: 16px;color: grey "><%=post_title%></p>
                     </li>
                     <li class="list-group-item">
                         <h4><b>回帖内容</b></h4>
@@ -106,7 +105,6 @@
                     <div style="float:right;margin: 20px auto">
                         <input type="hidden" name="followpostid" value=<%=followpost_id%>>
                         <input type="hidden" name="postid" value=<%=post_id%>>
-                        <input type="hidden" name="userid" value='1'>
                         <input type="submit" class="btn btn-primary" style="width: 80px;" value="提交修改">
                     </div>
                     <div style="float:right;margin: 20px auto;margin-right: 50px">
@@ -124,3 +122,4 @@
 </div>
 </body>
 </html>
+ <jsp:include page="bottom.jsp"/>

@@ -47,8 +47,8 @@
     <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
     <link href="css/post-detail.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
+ <jsp:include page="head.jsp"/>
 <body>
 
 <div class="container" style="margin-top: 50px" >
@@ -89,7 +89,6 @@
                     </li>
                     <div style="float:right;margin: 20px auto">
                         <input type="hidden" name="sub_forumid" value=<%=sub_forum_id%>>
-                        <input type="hidden" name="userid" value='1'>
                         <input type="submit" class="btn btn-primary" style="width: 60px;" value="·¢±í">
                     </div>
                     <div style="float:right;margin: 20px auto;margin-right: 50px">
@@ -106,3 +105,4 @@
 </div>
 </body>
 </html>
+ <jsp:include page="bottom.jsp"/>

@@ -4,12 +4,15 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import data.LoginBean;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -29,6 +32,12 @@ public class publishPost extends HttpServlet {
         String time = format.format(Calendar.getInstance().getTime());
         PrintWriter out=response.getWriter();
         String title="",content="",user_id="",info="",sub_forum_id="",post_id="";
+        HttpSession session = request.getSession(true);
+        LoginBean login = (LoginBean)session.getAttribute("loginBean");
+        if(login==null)
+        	response.sendRedirect("Login.jsp");
+        else
+        	user_id=String.valueOf(login.getId());
         List<FileItem> list=null;
         try {
             //使用Apache文件上传组件处理文件上传步骤：
@@ -57,8 +66,6 @@ public class publishPost extends HttpServlet {
                         title = value;
                     else if (name.equals("content"))
                         content = value;
-                    else if (name.equals("userid"))
-                        user_id = value;
                     else if (name.equals("info"))
                         info = value;
                     else if (name.equals("sub_forumid"))

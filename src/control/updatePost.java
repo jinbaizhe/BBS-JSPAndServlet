@@ -3,6 +3,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import data.LoginBean;
 import data.transferToGB2312;
 import org.apache.commons.fileupload.FileItem;
 
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,6 +36,12 @@ public class updatePost extends HttpServlet {
         PrintWriter out=response.getWriter();
 
         String title="",content="",user_id="",post_id="",info="";
+        HttpSession session = request.getSession(true);
+        LoginBean login = (LoginBean)session.getAttribute("loginBean");
+        if(login==null)
+        	response.sendRedirect("Login.jsp");
+        else
+        	user_id=String.valueOf(login.getId());
         List<FileItem> list=null;
         try {
             Context initCtx = new InitialContext();
@@ -64,8 +72,6 @@ public class updatePost extends HttpServlet {
                         title = value;
                     else if (name.equals("content"))
                         content = value;
-                    else if (name.equals("userid"))
-                        user_id = value;
                     else if (name.equals("postid"))
                         post_id = value;
                     else if (name.equals("info"))
