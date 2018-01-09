@@ -19,7 +19,7 @@
 	LoginBean login = new LoginBean();
 	login = (LoginBean)session.getAttribute("loginBean");
 	int userid = login.getId();//”√ªßid
-	jdbcBean db = new jdbcBean();
+	
  	String sql="select * from (select bbs.followpost.follow_time,bbs.sub_forum.sub_forum_title,bbs.followpost.post_id,bbs.followpost.content,bbs.followpost.followpost_user_id,bbs.post.post_title,bbs.post.sub_id from bbs.followpost left join bbs.post on followpost.post_id=post.id left join bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where followpost_user_id=?";
  	String []params={String.valueOf(userid)};
  
@@ -27,6 +27,7 @@
 
     try
     {
+    	jdbcBean db = new jdbcBean();
     	ResultSet rs = db.query(sql, params);    	
     	rowset.populate(rs);
     }catch(Exception e){}
