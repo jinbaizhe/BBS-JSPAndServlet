@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=gb2312" language="java" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.naming.*,javax.sql.*" %>
+<%@ page import="data.LoginBean" %>
 
 <html>
 <head>
@@ -21,6 +22,7 @@
 
 <%
     String post_id,sub_id;
+    Boolean isStar=false;
     post_id = request.getParameter("postid");
     int totalFollowpostNum,totalPageNum,pageSize=2,pageNum;
     sub_id = request.getParameter("subid");
@@ -39,10 +41,29 @@
     PreparedStatement statement = connection.prepareStatement("select post.*,user.username,user.sex,sub_forum.id,sub_forum.sub_forum_title,main_forum.id,main_forum.title from post,user,sub_forum,main_forum where post.user_id = user.id and post.sub_id=sub_forum.id and main_forum.id=sub_forum.main_id and post.id = ?");
     statement.setString(1,post_id);
     ResultSet rs = statement.executeQuery();
+    
+    
+    LoginBean loginBean = (LoginBean)session.getAttribute("loginBean");
+	if(loginBean!=null)
+	{
+		String user_id=String.valueOf(loginBean.getId());
+		statement = connection.prepareStatement("select * from favourite where userid=? and postid =?");
+    	statement.setString(1,user_id);
+    	statement.setString(2,post_id);
+    	ResultSet rs_star = statement.executeQuery();
+    	if(rs_star.next())
+    	{
+   			isStar=true;
+    	}
+    	rs_star.close();
+    	statement.close();
+	}
+    
+    
     String title,author,content,postTime;
     String subforum_id="",subforum_title="";
     String mainforum_id="",mainforum_title="";
-    String user_sex="";
+    String user_sex="",post_type="0",post_isTop="0";
     int replyNum,viewNum;
     PreparedStatement statement_post_img = connection.prepareStatement("select image.id from image where post_id =?");
     statement_post_img.setString(1,post_id);
@@ -63,6 +84,8 @@
         postTime = rs.getString("send_time");
         postTime=postTime.substring(0,postTime.length()-2);
         content=rs.getString("content");
+        post_isTop=rs.getString("post.isTop");
+        post_type=rs.getString("post_type");
 
         subforum_id=rs.getString("sub_forum.id");
         subforum_title=rs.getString("sub_forum.sub_forum_title");
@@ -107,11 +130,20 @@
 
                         <a style="float:right;margin-right: 20px;" href="<%=post_delete_url%>">删除</a>
                         <a style="float:right;margin-right: 20px;" href="<%=post_update_url%>">编辑</a>
+                        <%if(!isStar)
+                        { %>
                         <a style="float:right;margin-right: 20px;" href="starServlet?postid=<%=post_id%>">收藏</a>
+                        <%}else{ %>
                         <a style="float:right;margin-right: 20px;" href="unstarServlet?postid=<%=post_id%>">取消收藏</a>
-                        <a style="float:right;margin-right: 20px;" href="#">置顶</a>
-                        <a style="float:right;margin-right: 20px;" href="#">加精</a>
-
+                        <%} if(post_isTop.equals("0")){%>
+                        <a style="float:right;margin-right: 20px;" href="stickPostServlet?postid=<%=post_id%>&type=1">置顶</a>
+                        <%}else{ %>
+                        <a style="float:right;margin-right: 20px;" href="stickPostServlet?postid=<%=post_id%>&type=0">取消置顶</a>
+                        <%} if(post_type.equals("0")){%>
+                        <a style="float:right;margin-right: 20px;" href="highlightPostServlet?postid=<%=post_id%>&type=1">加精</a>
+						<%}else{ %>
+						<a style="float:right;margin-right: 20px;" href="highlightPostServlet?postid=<%=post_id%>&type=0">取消加精</a>
+						<%} %>
                     </div>
 
                 </div>

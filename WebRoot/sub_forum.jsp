@@ -83,7 +83,7 @@
                 <!--<p style="float: right"></p>-->
               </div>
     <%
-    statement = connection.prepareStatement("select * from post,user where post.user_id=user.id and sub_id =? order by "+order);
+    statement = connection.prepareStatement("select * from post,user where post.user_id=user.id and sub_id =? order by post.isTop desc, "+order);
     statement.setString(1,""+sub_id);
     rs = statement.executeQuery();
     rs.last();
