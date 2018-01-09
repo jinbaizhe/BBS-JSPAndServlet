@@ -26,10 +26,17 @@ public class HandleLogin extends HttpServlet {
 		
 	
 	}
+	public String handleString(String s) {
+		try{
+			byte bb[] = s.getBytes("iso-8859-1");
+			s = new String (bb);
+		}catch(Exception e){}
+		return s;
+	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String logname = request.getParameter("logname").trim();
-		String logpassword = request.getParameter("logpassword").trim();
+		String logname = handleString(request.getParameter("logname").trim());
+		String logpassword = handleString(request.getParameter("logpassword").trim());
 		boolean boo  = (logname.length()>0)&&(logpassword.length()>0);
 		String sql = "select * from user where username=? and userpassword=?";		
 		String []params = {logname,logpassword};

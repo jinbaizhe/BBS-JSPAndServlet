@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-xs-3">
             <ul class="nav nav-pills nav-stacked">
-                <li role="presentation"><a href="othersZone.jsp">我的信息</a></li>
+                <li role="presentation"><a href="othersInformation.jsp">我的信息</a></li>
                   <li role="presentation"><a href="othersSend.jsp">我的发帖</a></li>
                   <li role="presentation"><a href="othersReply.jsp">我的回帖</a></li>
                   <li role="presentation" class="active"><a href="othersCollect.jsp">我的收藏</a></li>
