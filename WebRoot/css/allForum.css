@@ -1,0 +1,46 @@
+#item
+{
+    float: left;
+    margin-left: 10px;
+}
+#clear
+{
+    clear: both;
+}
+#name
+{
+    font: bold 12px/20px arial,sans-serif;
+    font-size: 14px;
+}
+
+info
+{
+    font-size: 10px;
+}
+#title
+{
+    font-size: 24px;
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+}
+
+forum
+{
+    width: 300px;
+    height: 80px;
+}
+#main
+{
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+}
+#main_forum
+{
+    width: 300px;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
