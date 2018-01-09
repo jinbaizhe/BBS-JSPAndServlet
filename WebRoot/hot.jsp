@@ -47,7 +47,7 @@
     				String avatarPath = "avatar/"+postUserid+".jpg";
     				//out.print(avatarPath);
     		 	%>  
-    		 		<a href="post.jsp?postid=<%=rs1.getString(11) %>" class="list-group-item">
+    		 		<a href="post.jsp?postid=<%=rs1.getString(9) %>" class="list-group-item">
                         <div>
                         
                             <img  alt="<%=avatarPath %>"  align="left"  class="img-responsive" src="<%=avatarPath %>" style="margin:1px 1px;width: 40px;height: 40px;margin-right: 20px"/>
@@ -57,7 +57,7 @@
                                     <div class="text-right" style="float: right;margin-right: 20px;font-size: 14px">回复/浏览：<%=rs1.getString(8) %>/<%=rs1.getString(7) %></div>
                                 </div>
                             </div>
-                           作者： <%=rs1.getString(11)%>
+                           作者： <%=rs1.getString(12)%>
                             <p class="text-right" style="float: right;margin-right: 20px">发帖时间：<%=rs1.getString(6) %></p>
                         </div>
                     </a>
