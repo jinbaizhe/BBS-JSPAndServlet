@@ -114,7 +114,7 @@
           <a href="post.jsp?postid=<%=postid%>&subid=<%=sub_id%>" class="list-group-item">
             <h4 class="list-group-item-heading"><%=title%></h4>
             <%=content%>
-            <p class="text-right" style="float: right;margin-right: 20px">作者:<%=author%>&nbsp;浏览量:<%=viewNum%>&nbsp;评论量:<%=replyNum%>&nbsp;发表日期:<%=postTime%></p>
+            <p class="text-right" style="float: right;margin-right: 20px">作者:<%=author%>&nbsp;浏览数:<%=viewNum%>&nbsp;回复数:<%=replyNum%>&nbsp;发帖时间:<%=postTime%>&nbsp;最后回复时间:<%=lastFollowPostTime%></p>
             <br>
           </a>
 

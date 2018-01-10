@@ -38,7 +38,7 @@
     Context initCtx = new InitialContext();
     DataSource ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/db");
     Connection connection = ds.getConnection();
-    PreparedStatement statement = connection.prepareStatement("select post.*,user.username,user.sex,sub_forum.id,sub_forum.sub_forum_title,main_forum.id,main_forum.title from post,user,sub_forum,main_forum where post.user_id = user.id and post.sub_id=sub_forum.id and main_forum.id=sub_forum.main_id and post.id = ?");
+    PreparedStatement statement = connection.prepareStatement("select post.*,user.id,user.username,user.sex,sub_forum.id,sub_forum.sub_forum_title,main_forum.id,main_forum.title from post,user,sub_forum,main_forum where post.user_id = user.id and post.sub_id=sub_forum.id and main_forum.id=sub_forum.main_id and post.id = ?");
     statement.setString(1,post_id);
     ResultSet rs = statement.executeQuery();
     
@@ -63,7 +63,7 @@
     String title,author,content,postTime;
     String subforum_id="",subforum_title="";
     String mainforum_id="",mainforum_title="";
-    String user_sex="",post_type="0",post_isTop="0";
+    String user_sex="",authorID="",post_type="0",post_isTop="0";
     int replyNum,viewNum;
     PreparedStatement statement_post_img = connection.prepareStatement("select image.id from image where post_id =?");
     statement_post_img.setString(1,post_id);
@@ -78,6 +78,7 @@
         sub_id=rs.getString("sub_id");
         title = rs.getString("post_title");
         author = rs.getString("username");
+        authorID = rs.getString("user.id");
         user_sex=rs.getString("user.sex");
         replyNum = Integer.parseInt(rs.getString("reply_num"));
         viewNum = Integer.parseInt(rs.getString("view_num"));
@@ -105,14 +106,16 @@
             <div style='font-size: 20px'><a href='allForum.jsp'>全部版块</a>>>&nbsp;<a href='allForum.jsp?mainforumid=<%=mainforum_id%>'><%=mainforum_title%></a>>>&nbsp;<a href='sub_forum.jsp?subid=<%=sub_id%>'><%=subforum_title%></a></div>
 
             <div class="col-md-2 post-head">
-                <img  alt="" class="img-responsive img-circle" src="avatar/default.jpg"
+                <a href="othersInformation.jsp?userid=<%=authorID%>">
+                	<img  alt="" class="img-responsive img-circle" src="avatar/default.jpg"
                       style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
-
-                <span class="badge" style="background: #f1c40f;margin-top: 5px">发帖者:<%=author%></span>
-                <br/>
-                <span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=user_sex %></span>
-                <br/>
-                <span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
+                
+                	<span class="badge" style="background: #f1c40f;margin-top: 5px">发帖者:<%=author%></span>
+                	<br/>
+                	<span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=user_sex%></span>
+                	<br/>
+                	<span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
+                </a>
                 <br>
             </div>
             <div class="col-md-8 post-content">
@@ -165,7 +168,7 @@
     rs.close();
     statement.close();
 
-    statement = connection.prepareStatement("SELECT followpost.*,user.username,user.sex FROM followpost,user where followpost.followpost_user_id=user.id and post_id =? order by follow_time asc;");
+    statement = connection.prepareStatement("SELECT followpost.*,user.username,user.id,user.sex FROM followpost,user where followpost.followpost_user_id=user.id and post_id =? order by follow_time asc;");
     statement.setString(1,post_id);
     rs = statement.executeQuery();
     rs.last();
@@ -174,11 +177,12 @@
     rs.beforeFirst();
     int pageFirstPost=(pageNum-1)*pageSize+1;
     rs.absolute(pageFirstPost-1);
-    String followpostUserName,followpostId,followpostContent,follow_time,followpostUserSex;
+    String followpostUserName,followpostId,followpostContent,follow_time,followpostUserSex,followpostUserID;
     for(int i=pageFirstPost;i<=(pageFirstPost-1+pageSize)&&rs.next();i++)
     {
         followpostId=rs.getString("followpost_id");
         followpostUserName=rs.getString("username");
+        followpostUserID=rs.getString("user.id");
         followpostUserSex=rs.getString("user.sex");
         followpostContent=rs.getString("content");
         follow_time=rs.getString("follow_time");
@@ -202,14 +206,16 @@
             </div>
 
             <div class="col-md-2 reply-head">
-                <img  alt="" class="img-responsive img-circle" src="avatar/default.jpg"
-                      style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
-
-                <span class="badge" style="background: #f1c40f;margin-top: 5px">姓名:<%=followpostUserName%></span>
-                <br/>
-                <span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=followpostUserSex %></span>
-                <br/>
-                <span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
+            	<a href="othersInformation.jsp?userid=<%=followpostUserID%>">
+                	<img  alt="" class="img-responsive img-circle" src="avatar/default.jpg"
+                      	style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
+				
+                	<span class="badge" style="background: #f1c40f;margin-top: 5px">姓名:<%=followpostUserName%></span>
+                	<br/>
+                	<span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=followpostUserSex %></span>
+                	<br/>
+                	<span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
+                </a>
                 <br>
             </div>
             <div class="col-md-8 reply-content">

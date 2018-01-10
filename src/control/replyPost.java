@@ -97,7 +97,7 @@ public class replyPost extends HttpServlet {
                 }
                 statement.close();
 
-                statement = connection.prepareStatement("update post set last_followpost_time = ? where id = ?");
+                statement = connection.prepareStatement("update post set last_followpost_time = ?,reply_num=reply_num+1 where id = ?");
                 statement.setString(1, time);
                 statement.setString(2, post_id);
                 statement.execute();
