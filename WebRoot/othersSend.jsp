@@ -14,8 +14,10 @@
 </head>
 <body>
 <% 
+	userBean user = new userBean();
+ 	user = (userBean)session.getAttribute("userid");
+	int userid =  user.getUserid(); //获取传过来的id
 	
-	int userid = 2;
 	
 	//得到 主题名，板块名，浏览数，回复数，发帖时间
 	String sql0 ="select * from (select bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.post.id as postid,bbs.sub_forum.sub_forum_title,bbs.sub_forum.id from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where bbs.t.user_id=?";

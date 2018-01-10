@@ -16,7 +16,9 @@
 <% 
 	
 
-	int userid = 2;//待定
+	userBean user = new userBean();
+ 	user = (userBean)session.getAttribute("userid");
+	int userid =  user.getUserid(); //获取传过来的id
 
 	
 	//得到 主题名，板块名，浏览数，回复数，发帖时间
