@@ -32,6 +32,7 @@
 			user.setRegister_time(rs.getString(11));
 		}
 		}catch(Exception e){}
+		db.close();
 			
 	 %>
 	 <% String avatarSrc = "avatar/"+user.getAvatar();   %>

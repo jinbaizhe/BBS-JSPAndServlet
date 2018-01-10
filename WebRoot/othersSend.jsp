@@ -29,6 +29,7 @@
     	jdbcBean db = new jdbcBean();
     	ResultSet rs = db.query(sql0, params0);
     	rowset.populate(rs);
+    	db.close(); 
     }catch(Exception e){}
     
 	
@@ -38,7 +39,7 @@
     <div class="row">
         <div class="col-xs-3">
             <ul class="nav nav-pills nav-stacked">
-                <li role="presentation" ><a href="othersInformation.jsp">Ta的信息</a></li>
+                <li role="presentation" ><a href="othersInformation.jsp?userid=<%=userid %>">Ta的信息</a></li>
                   <li role="presentation" class="active"><a href="othersSend.jsp">Ta的发帖</a></li>
                   <li role="presentation"><a href="othersReply.jsp">Ta的回帖</a></li>
                   <li role="presentation"><a href="othersCollect.jsp">Ta的收藏</a></li>

@@ -43,9 +43,10 @@ top.location.href = location.href;
 					user.setStatus(rs.getInt(8));
 					user.setType(rs.getInt(9));
 					user.setRegister_time(rs.getString(11));
+					
 				}
 				}catch(Exception e){}
-				 	
+				 	db.close();
 			%>
 				
  <% String avatarSrc = "avatar/"+user.getAvatar();  %>
@@ -54,7 +55,7 @@ top.location.href = location.href;
     <div class="row">
         <div class="col-xs-3">
             <ul class="nav nav-pills nav-stacked">
-                <li role="presentation" class="active"><a href="ohtersInformation.jsp">Ta的信息</a></li>
+                <li role="presentation" class="active"><a href="othersInformation.jsp?userid=<%=userid %>">Ta的信息</a></li>
                   <li role="presentation"><a href="othersSend.jsp">Ta的发帖</a></li>
                   <li role="presentation"><a href="othersReply.jsp">Ta的回帖</a></li>
                   <li role="presentation"><a href="othersCollect.jsp">Ta的收藏</a></li>

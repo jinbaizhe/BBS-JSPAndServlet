@@ -46,30 +46,30 @@ public class HandleSearch extends HttpServlet {
 		if(searchBySubForum.equals("all")) //所有板块
 		{
 		if(searchByType.equals("postTitle")){ //按帖子标题搜索
-			sql="select * from (select bbs.post.content,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.sub_forum.sub_forum_title from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where t.post_title like ? order by ?";
+			sql="select * from (select bbs.post.content,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.sub_forum.sub_forum_title,bbs.post.id as postid from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where t.post_title like ? order by ?";
 			params = new String[]{"%"+searchByContent+"%",searchBySort};
 		}
 		else if(searchByType.equals("postContent")){ //按帖子内容搜索
-			sql="select * from (select bbs.post.content,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.sub_forum.sub_forum_title from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where t.content like ? order by ?";
+			sql="select * from (select bbs.post.content,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.sub_forum.sub_forum_title,bbs.post.id as postid from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where t.content like ? order by ?";
 			params = new String[]{"%"+searchByContent+"%",searchBySort};
 		}
 		else if(searchByType.equals("all")){ //按全部内容搜索
-			sql="select * from (select bbs.post.content,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.sub_forum.sub_forum_title from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where t.post_title like ? or t.content like ? order by ?";
+			sql="select * from (select bbs.post.content,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.sub_forum.sub_forum_title,bbs.post.id as postid from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where t.post_title like ? or t.content like ? order by ?";
 			params = new String[]{"%"+searchByContent+"%","%"+searchByContent+"%",searchBySort};
 	
 		}
 		}
 		else{ //在某子版块搜索
 			if(searchByType.equals("postTitle")){
-				sql="select * from (select bbs.post.content,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.sub_forum.sub_forum_title from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where t.post_title like ? and t.id=? order by ?";
+				sql="select * from (select bbs.post.content,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.sub_forum.sub_forum_title,bbs.post.id as postid from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where t.post_title like ? and t.id=? order by ?";
 				params = new String[]{"%"+searchByContent+"%",searchBySubForum,searchBySort};
 			}
 			else if(searchByType.equals("postContent")){
-				sql="select * from (select bbs.post.content,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.sub_forum.sub_forum_title from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where t.content like ? and t.id=? order by ?";
+				sql="select * from (select bbs.post.content,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.sub_forum.sub_forum_title,bbs.post.id as postid from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where t.content like ? and t.id=? order by ?";
 				params = new String[]{"%"+searchByContent+"%",searchBySubForum,searchBySort};
 			}
 			else if(searchByType.equals("all")){
-				sql="select * from (select bbs.post.content,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.sub_forum.sub_forum_title from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where t.post_title like ? or t.content like ? and t.id=? order by ?";
+				sql="select * from (select bbs.post.content,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.sub_forum.sub_forum_title,bbs.post.id as postid from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where t.post_title like ? or t.content like ? and t.id=? order by ?";
 				params = new String[]{"%"+searchByContent+"%","%"+searchByContent+"%",searchBySubForum,searchBySort};
 		
 			}

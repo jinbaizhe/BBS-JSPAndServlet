@@ -22,7 +22,7 @@
 	int userid =  user.getUserid(); //获取传过来的id
 
 	
-	//得到 主题名，板块名，浏览数，回复数，发帖时间
+	//得到 主题名，板块名，浏览数，回复数，发帖时间 
 	String sql ="select *  from (select bbs.favourite.userid,bbs.favourite.postid,bbs.post.post_title,bbs.post.reply_num,bbs.post.view_num,bbs.post.send_time,bbs.post.sub_id,bbs.sub_forum.sub_forum_title from bbs.favourite left join bbs.post on bbs.favourite.postid = bbs.post.id left join bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where userid=?";
 	String []params ={String.valueOf(userid)};
   	CachedRowSetImpl rowset=new CachedRowSetImpl() ;
@@ -31,6 +31,7 @@
     	jdbcBean db = new jdbcBean();
     	ResultSet rs = db.query(sql, params);
     	rowset.populate(rs);
+    	db.close();
     }catch(Exception e){}
     
 	
@@ -40,7 +41,7 @@
     <div class="row">
         <div class="col-xs-3">
             <ul class="nav nav-pills nav-stacked">
-                <li role="presentation"><a href="othersInformation.jsp">我的信息</a></li>
+                <li role="presentation"><a href="othersInformation.jsp?userid=<%=userid %>">我的信息</a></li>
                   <li role="presentation"><a href="othersSend.jsp">我的发帖</a></li>
                   <li role="presentation"><a href="othersReply.jsp">我的回帖</a></li>
                   <li role="presentation" class="active"><a href="othersCollect.jsp">我的收藏</a></li>
@@ -108,6 +109,7 @@
 		out.print("<td>"+send_time+"</td>");
 		out.print("</tr>");
 		boo = rowset.next();
+		
 	}
 	}		
  %>

@@ -67,9 +67,9 @@
 	<tr><td>	
 		<label for="name">类型:</label></td>
 	<div class="radio"> 
-		<td><label><input name="type" type="radio" value="postTitle" checked="checked"/>帖子标题</label> 
+		<td><label><input name="type" type="radio" value="postTitle" />帖子标题</label> 
 			<label><input name="type" type="radio" value="postContent" />主题帖内容</label> 
-			<label><input name="type" type="radio" value="all" />全部</label> 
+			<label><input name="type" type="radio" value="all" checked="checked" />全部</label> 
 	</div>
 		</td>
 	</tr>
@@ -145,10 +145,9 @@
             String view=rowSet.getString(6);
          	String sendTime=rowSet.getString(5); 
          	String reply_view =reply+"/"+view;
-        
             out.print("<tr>");
-            out.print("<td>"+"<a href=''>"+title+"</a>"+"</td>");
-            out.print("<td>"+"<a href=''>"+subForum+"</a>"+"</td>");
+            out.print("<td>"+"<a href='"+"post.jsp?postid="+rowSet.getString(9)+"'>"+title+"</a>"+"</td>");
+            out.print("<td>"+"<a href='"+"sub_forum.jsp?subid="+rowSet.getString(2)+"'>"+subForum+"</a>"+"</td>");
             out.print("<td>"+reply_view+"</a>"+"</td>");
             out.print("<td>"+sendTime+"</td>");        
             out.print("</tr>");

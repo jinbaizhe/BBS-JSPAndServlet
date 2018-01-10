@@ -26,21 +26,21 @@
     	ResultSet rs = db.query(sql0);
     	while(rs.next()){   	
     
-    		%>
+    		%> 
     		 <div class="row">
         <div class="col-md-12">
             <ul class="list-group">
                 <div class="row">
                     <div class="list-group-item active">
                         <%= rs.getString(1)%>
-                        <a href="" style="float: right ; color: white">更多>></a>
+                        <a href="allForum.jsp?mainforumid=<%=rs.getString(2) %>" style="float: right ; color: white">更多>></a>
                     </div>
                 </div>
                 <div class="row">
     		
     		
     		<% 
-    		String sql1 = "select * from (select bbs.sub_forum.main_id,bbs.post.istop,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.post.id as post_id,bbs.sub_forum.sub_forum_title,bbs.post.post_type from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id) as t left join bbs.user on bbs.user.id=user_id and post_type=1 where main_id=? order by reply_num desc";
+    		String sql1 = "select * from (select bbs.sub_forum.main_id,bbs.post.istop,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.post.id as post_id,bbs.sub_forum.sub_forum_title,bbs.post.post_type from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id) as t left join bbs.user on bbs.user.id=user_id where main_id=? and post_type=1 order by reply_num desc";
     
     		String []params1 = {rs.getString(2)}; //主板块号
     		 ResultSet rs1 = db.query(sql1, params1);
@@ -51,10 +51,10 @@
     		 		String title = rs1.getString(5)+"[精华]";		
     		 		if (istop.equals("1")){
     		 			title =rs1.getString(5)+"[置顶]"+"[精华]";
-    		 		}	 
+    		  		}	 
     				String avatarPath = "avatar/"+postUserid+".jpg";
-    		 	%>
-    		 		<a href="post.jsp?postid=<%=rs1.getString(11)%>" class="list-group-item">
+    		 	%> 
+    		 		<a href="post.jsp?postid=<%=rs1.getString(9)%>" class="list-group-item">
                         <div> 
                             <img  alt=""  align="left" class="img-responsive" src="<%=avatarPath %>"
                                   style="margin:1px 1px;width: 40px;height: 40px;margin-right: 20px"/>
@@ -64,7 +64,7 @@
                                     <div class="text-right" style="float: right;margin-right: 20px;font-size: 14px">回复/浏览：<%=rs1.getString(8) %>/<%=rs1.getString(7) %></div>
                                 </div>
                             </div>
-                           作者： <%=rs1.getString(13)%>
+                           作者： <%=rs1.getString(13)%> 
                             <p class="text-right" style="float: right;margin-right: 20px">发帖时间：<%=rs1.getString(6) %></p>
                         </div>
                     </a>

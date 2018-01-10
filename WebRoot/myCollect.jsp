@@ -109,13 +109,14 @@
 		out.print("</tr>");
 		boo = rowset.next();
 	}
-	}		
+	}		 
+	db.close();
  %>
 </tbody>
 </table> 
 	<div style="float:left;width: 50%;padding: 10px;">
                 <input type="submit" class="btn btn-primary" value="删除选中"
-                   style="margin:auto;width: 40%;height: 60px;padding: 6px;"></input>
+                   style="margin:auto;width: 40%;height: 40px;padding: 6px;"></input>
             </div>
 <!-- <input type=submit name="delete" value="删除选中"><br> -->
 

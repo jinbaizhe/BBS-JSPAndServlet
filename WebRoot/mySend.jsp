@@ -92,9 +92,9 @@
 	rowset.absolute(index);
 	boolean boo = true;
 	for(int i = 0 ;i<pageSize && boo ; i++){
-		String title = rowset.getString(2);
+		String title = rowset.getString(2); 
 		String sub_forum = rowset.getString(7);
-		String reply = rowset.getString(5);
+		String reply = rowset.getString(5); 
 		String view = rowset.getString(4);
 		String send_time = rowset.getString(3);
 		String view_reply = view+"/"+reply;
@@ -107,6 +107,7 @@
 		boo = rowset.next();
 	}
 	}		
+	db.close();
  %>
  </tbody>
 </table>

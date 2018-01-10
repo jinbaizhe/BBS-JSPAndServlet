@@ -26,10 +26,11 @@
   	CachedRowSetImpl rowset=new CachedRowSetImpl() ;
 
     try
-    {
+    { 
     	jdbcBean db = new jdbcBean();
     	ResultSet rs = db.query(sql, params);    	
     	rowset.populate(rs);
+    	db.close();
     }catch(Exception e){}
  	
   %>
@@ -97,6 +98,7 @@
 		boo = rowset.next();
 	}
 	}		
+	
  %>
  
  </tbody>
