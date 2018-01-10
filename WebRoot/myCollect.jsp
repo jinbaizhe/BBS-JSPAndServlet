@@ -42,6 +42,7 @@
                   <li role="presentation"><a href="mySend.jsp">我的发帖</a></li>
                   <li role="presentation"><a href="myReply.jsp">我的回帖</a></li>
                   <li role="presentation" class="active"><a href="myCollect.jsp">我的收藏</a></li>
+                  <li role="presentation"><a href="alterPassword.jsp">我的安全</a></li>
             </ul>
 		</div>
 	<div class="col-md-9">

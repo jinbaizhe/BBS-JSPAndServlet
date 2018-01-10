@@ -229,9 +229,18 @@
     <servlet-name>highlightPostServlet</servlet-name>
     <servlet-class>control.highlightPost</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>alterPasswordServlet</servlet-name>
+     <servlet-class>control.HandleAlterPassword</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>highlightPostServlet</servlet-name>
     <url-pattern>/highlightPostServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>alterPasswordServlet</servlet-name>
+    <url-pattern>/alterPasswordServlet</url-pattern>
   </servlet-mapping>
   <resource-ref>
     <description>db</description>
