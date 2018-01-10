@@ -12,7 +12,7 @@
 
 
 <script language="JavaScript">   
-if (window != top)   
+if (window != top)    
 top.location.href = location.href;     
 </script>  
 

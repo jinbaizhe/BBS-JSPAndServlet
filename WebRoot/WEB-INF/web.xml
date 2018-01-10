@@ -234,6 +234,7 @@
      <servlet-class>control.HandleAlterPassword</servlet-class>
   </servlet>
 
+
   <servlet-mapping>
     <servlet-name>highlightPostServlet</servlet-name>
     <url-pattern>/highlightPostServlet</url-pattern>
@@ -242,6 +243,7 @@
     <servlet-name>alterPasswordServlet</servlet-name>
     <url-pattern>/alterPasswordServlet</url-pattern>
   </servlet-mapping>
+ 
   <resource-ref>
     <description>db</description>
     <res-ref-name>jdbc/db</res-ref-name>

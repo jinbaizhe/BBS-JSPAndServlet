@@ -35,6 +35,7 @@ public class HandleAlterAvatar extends HttpServlet {
 		 login = (LoginBean)session.getAttribute("loginBean"); //得到当前登录 的用户
 		 String username = login.getLogname(); //得到用户名
 		 int userid = login.getId();//得到用户id
+		 String path = this.getServletContext().getRealPath("/")+"avatar\\";
 		 String newFilename = userid+".jpg"; //头像图片名字以用户名来存
 		 SmartUpload smartUpload = new SmartUpload();
 	        // 初始化
@@ -49,7 +50,7 @@ public class HandleAlterAvatar extends HttpServlet {
 	            // 得到上传的文件对象
 	            File smartFile = smartUpload.getFiles().getFile(0);
 	            // 保存文件
-	            smartFile.saveAs("E:/MyEclipse Workspaces new/BBS/WebRoot/avatar/" + newFilename,
+	            smartFile.saveAs(path + newFilename,
 	                    SmartUpload.SAVE_PHYSICAL);// 保存文件
 	        } catch (SmartUploadException e) {
 	            e.printStackTrace();
