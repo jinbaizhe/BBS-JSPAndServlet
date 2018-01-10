@@ -21,10 +21,17 @@ top.location.href = location.href;
 				
 				userBean user = new userBean();
 				jdbcBean db = new jdbcBean();
-				int userid = 2; //待修改
+				if(session.getAttribute("others") != null){
+					session.removeAttribute("others"); //销毁之前的对象
+				}
+				
+				session.setAttribute("others", user);//设置新的对象
+				int userid = Integer.parseInt(request.getParameter("userid"));
+				user.setUserid(userid);
+				
 				String sql = "select * from user where id=?";
 				String []params = {String.valueOf(userid)};
-				session.setAttribute("ohters", user); //bean存到session中
+				
 				try{
 				ResultSet rs = db.query(sql, params);
 				while(rs.next()){

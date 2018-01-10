@@ -22,8 +22,11 @@
     String specificid=request.getParameter("mainforumid");
     if(specificid==null)
     {
-%>
-        <h1>全部版块</h1>
+%> 
+ 
+    <!--     <h1>全部版块1</h1> -->
+    <img src="image/allForum.png" class="img-responsive"  width="608"  height="472"> 
+        
     </div>
     <%
     }
