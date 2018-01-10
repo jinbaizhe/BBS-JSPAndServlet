@@ -80,7 +80,7 @@ top.location.href = location.href;
                         </div>
 
                         <div class="form-group">
-                            <label for="name">性 别:</label><br/>
+                            <label for="name">性别:</label><br/>
                             <%= user.getSex()%>
                        
                      

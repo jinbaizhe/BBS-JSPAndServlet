@@ -9,7 +9,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.naming.*,javax.sql.*" %>
 <%@ page import="data.LoginBean" %>
-<jsp:include page="head.jsp"/>
+
 <html>
 <head>
     <title>Title</title>
@@ -17,6 +17,7 @@
     <link href="css/post-detail.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
 </head>
+ <jsp:include page="head.jsp"/>
 <body>
 
 <%
@@ -77,7 +78,7 @@
         sub_id=rs.getString("sub_id");
         title = rs.getString("post_title");
         author = rs.getString("username");
-        authorID = rs.getString("user.id");
+	authorID = rs.getString("user.id");
         user_sex=rs.getString("user.sex");
         replyNum = Integer.parseInt(rs.getString("reply_num"));
         viewNum = Integer.parseInt(rs.getString("view_num"));
@@ -92,6 +93,7 @@
         mainforum_id=rs.getString("main_forum.id");
         mainforum_title=rs.getString("main_forum.title");
         %>
+    <div style="height:auto">
 
             <%
 //        if(pageNum==1)
@@ -104,16 +106,16 @@
             <div style='font-size: 20px'><a href='allForum.jsp'>全部版块</a>>>&nbsp;<a href='allForum.jsp?mainforumid=<%=mainforum_id%>'><%=mainforum_title%></a>>>&nbsp;<a href='sub_forum.jsp?subid=<%=sub_id%>'><%=subforum_title%></a></div>
 
             <div class="col-md-2 post-head">
-                <a href="othersInformation.jsp?userid=<%=authorID%>">
-                	<img  alt="" class="img-responsive img-circle" src="avatar/default.jpg"
+		<a href="othersInformation.jsp?userid=<%=authorID%>">
+                <img  alt="" class="img-responsive img-circle" src="avatar/default.jpg"
                       style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
-                
-                	<span class="badge" style="background: #f1c40f;margin-top: 5px">发帖者:<%=author%></span>
-                	<br/>
-                	<span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=user_sex%></span>
-                	<br/>
-                	<span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
-                </a>
+
+                <span class="badge" style="background: #f1c40f;margin-top: 5px">发帖者:<%=author%></span>
+                <br/>
+                <span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=user_sex %></span>
+                <br/>
+                <span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
+		</a>
                 <br>
             </div>
             <div class="col-md-8 post-content">
@@ -180,7 +182,7 @@
     {
         followpostId=rs.getString("followpost_id");
         followpostUserName=rs.getString("username");
-        followpostUserID=rs.getString("user.id");
+	followpostUserID=rs.getString("user.id");
         followpostUserSex=rs.getString("user.sex");
         followpostContent=rs.getString("content");
         follow_time=rs.getString("follow_time");
@@ -204,16 +206,16 @@
             </div>
 
             <div class="col-md-2 reply-head">
-            	<a href="othersInformation.jsp?userid=<%=followpostUserID%>">
-                	<img  alt="" class="img-responsive img-circle" src="avatar/default.jpg"
-                      	style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
-				
-                	<span class="badge" style="background: #f1c40f;margin-top: 5px">姓名:<%=followpostUserName%></span>
-                	<br/>
-                	<span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=followpostUserSex %></span>
-                	<br/>
-                	<span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
-                </a>
+<a href="othersInformation.jsp?userid=<%=followpostUserID%>">
+                <img  alt="" class="img-responsive img-circle" src="avatar/default.jpg"
+                      style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
+
+                <span class="badge" style="background: #f1c40f;margin-top: 5px">回帖者:<%=followpostUserName%></span>
+                <br/>
+                <span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=followpostUserSex %></span>
+                <br/>
+                <span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
+ </a>
                 <br>
             </div>
             <div class="col-md-8 reply-content">
@@ -259,7 +261,7 @@
         connection.close();
     %>
 
-    
+
         <div class="row">
             <div class="col-md-1">
             </div>
@@ -301,9 +303,10 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-1"></div>
         </div>
     </div>
+
+</div>
 </body>
 </html>
-<jsp:include page="bottom.jsp"/>
+     <jsp:include page="bottom.jsp"/>
