@@ -8,18 +8,21 @@
 <%@ page contentType="text/html;charset=gb2312" language="java" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.naming.*,javax.sql.*" %>
+<%@ page import="data.LoginBean" %>
+
 <html>
 <head>
     <title>Title</title>
     <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
     <link href="css/post-detail.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
+ <jsp:include page="head.jsp"/>
 <body>
 
 <%
     String post_id,sub_id;
+    Boolean isStar=false;
     post_id = request.getParameter("postid");
     int totalFollowpostNum,totalPageNum,pageSize=2,pageNum;
     sub_id = request.getParameter("subid");
@@ -35,12 +38,32 @@
     Context initCtx = new InitialContext();
     DataSource ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/db");
     Connection connection = ds.getConnection();
-    PreparedStatement statement = connection.prepareStatement("select post.*,user.username,sub_forum.id,sub_forum.sub_forum_title,main_forum.id,main_forum.title from post,user,sub_forum,main_forum where post.user_id = user.id and post.sub_id=sub_forum.id and main_forum.id=sub_forum.main_id and post.id = ?");
+    PreparedStatement statement = connection.prepareStatement("select post.*,user.username,user.sex,sub_forum.id,sub_forum.sub_forum_title,main_forum.id,main_forum.title from post,user,sub_forum,main_forum where post.user_id = user.id and post.sub_id=sub_forum.id and main_forum.id=sub_forum.main_id and post.id = ?");
     statement.setString(1,post_id);
     ResultSet rs = statement.executeQuery();
+    
+    
+    LoginBean loginBean = (LoginBean)session.getAttribute("loginBean");
+	if(loginBean!=null)
+	{
+		String user_id=String.valueOf(loginBean.getId());
+		statement = connection.prepareStatement("select * from favourite where userid=? and postid =?");
+    	statement.setString(1,user_id);
+    	statement.setString(2,post_id);
+    	ResultSet rs_star = statement.executeQuery();
+    	if(rs_star.next())
+    	{
+   			isStar=true;
+    	}
+    	rs_star.close();
+    	statement.close();
+	}
+    
+    
     String title,author,content,postTime;
     String subforum_id="",subforum_title="";
     String mainforum_id="",mainforum_title="";
+    String user_sex="",post_type="0",post_isTop="0";
     int replyNum,viewNum;
     PreparedStatement statement_post_img = connection.prepareStatement("select image.id from image where post_id =?");
     statement_post_img.setString(1,post_id);
@@ -48,18 +71,21 @@
     String div_img="";
     while (rs_post_img.next())
     {
-        div_img+="<img id='content' src='showImageServlet?imgid="+rs_post_img.getString("id")+"'width='120' height=100>&nbsp;&nbsp;";
+        div_img+="<img src='showImageServlet?imgid="+rs_post_img.getString("id")+"'width='120' height=100>&nbsp;&nbsp;";
     }
     if(rs.next())
     {
         sub_id=rs.getString("sub_id");
         title = rs.getString("post_title");
         author = rs.getString("username");
+        user_sex=rs.getString("user.sex");
         replyNum = Integer.parseInt(rs.getString("reply_num"));
         viewNum = Integer.parseInt(rs.getString("view_num"));
         postTime = rs.getString("send_time");
         postTime=postTime.substring(0,postTime.length()-2);
         content=rs.getString("content");
+        post_isTop=rs.getString("post.isTop");
+        post_type=rs.getString("post_type");
 
         subforum_id=rs.getString("sub_forum.id");
         subforum_title=rs.getString("sub_forum.sub_forum_title");
@@ -76,7 +102,7 @@
         <div class="row">
             <div class="col-md-1 post-border">
             </div>
-            <div style='font-size: 20px'>社区>>&nbsp;<a href='allForum.jsp?mainforumid=<%=mainforum_id%>'><%=mainforum_title%></a>>>&nbsp;<a href='sub_forum.jsp?subid=<%=sub_id%>'><%=subforum_title%></a></div>
+            <div style='font-size: 20px'><a href='allForum.jsp'>全部版块</a>>>&nbsp;<a href='allForum.jsp?mainforumid=<%=mainforum_id%>'><%=mainforum_title%></a>>>&nbsp;<a href='sub_forum.jsp?subid=<%=sub_id%>'><%=subforum_title%></a></div>
 
             <div class="col-md-2 post-head">
                 <img  alt="" class="img-responsive img-circle" src="avatar/default.jpg"
@@ -84,7 +110,7 @@
 
                 <span class="badge" style="background: #f1c40f;margin-top: 5px">发帖者:<%=author%></span>
                 <br/>
-                <span class="badge" style="background: #2ecc71;margin-top: 5px">性别:性别1</span>
+                <span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=user_sex %></span>
                 <br/>
                 <span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
                 <br>
@@ -104,11 +130,20 @@
 
                         <a style="float:right;margin-right: 20px;" href="<%=post_delete_url%>">删除</a>
                         <a style="float:right;margin-right: 20px;" href="<%=post_update_url%>">编辑</a>
+                        <%if(!isStar)
+                        { %>
                         <a style="float:right;margin-right: 20px;" href="starServlet?postid=<%=post_id%>">收藏</a>
+                        <%}else{ %>
                         <a style="float:right;margin-right: 20px;" href="unstarServlet?postid=<%=post_id%>">取消收藏</a>
-                        <a style="float:right;margin-right: 20px;" href="#">置顶</a>
-                        <a style="float:right;margin-right: 20px;" href="#">加精</a>
-
+                        <%} if(post_isTop.equals("0")){%>
+                        <a style="float:right;margin-right: 20px;" href="stickPostServlet?postid=<%=post_id%>&type=1">置顶</a>
+                        <%}else{ %>
+                        <a style="float:right;margin-right: 20px;" href="stickPostServlet?postid=<%=post_id%>&type=0">取消置顶</a>
+                        <%} if(post_type.equals("0")){%>
+                        <a style="float:right;margin-right: 20px;" href="highlightPostServlet?postid=<%=post_id%>&type=1">加精</a>
+						<%}else{ %>
+						<a style="float:right;margin-right: 20px;" href="highlightPostServlet?postid=<%=post_id%>&type=0">取消加精</a>
+						<%} %>
                     </div>
 
                 </div>
@@ -130,7 +165,7 @@
     rs.close();
     statement.close();
 
-    statement = connection.prepareStatement("SELECT followpost.*,user.username FROM followpost,user where followpost.followpost_user_id=user.id and post_id =? order by follow_time asc;");
+    statement = connection.prepareStatement("SELECT followpost.*,user.username,user.sex FROM followpost,user where followpost.followpost_user_id=user.id and post_id =? order by follow_time asc;");
     statement.setString(1,post_id);
     rs = statement.executeQuery();
     rs.last();
@@ -139,11 +174,12 @@
     rs.beforeFirst();
     int pageFirstPost=(pageNum-1)*pageSize+1;
     rs.absolute(pageFirstPost-1);
-    String followpostName,followpostId,followpostContent,follow_time;
+    String followpostUserName,followpostId,followpostContent,follow_time,followpostUserSex;
     for(int i=pageFirstPost;i<=(pageFirstPost-1+pageSize)&&rs.next();i++)
     {
         followpostId=rs.getString("followpost_id");
-        followpostName=rs.getString("username");
+        followpostUserName=rs.getString("username");
+        followpostUserSex=rs.getString("user.sex");
         followpostContent=rs.getString("content");
         follow_time=rs.getString("follow_time");
         follow_time=follow_time.substring(0,follow_time.length()-2);
@@ -153,7 +189,7 @@
         String div_followpost_img="";
         while (rs_followpost_img.next())
         {
-            div_followpost_img+="<img id='content' src='showImageServlet?imgid="+rs_followpost_img.getString("id")+"'width='120' height=100>&nbsp;&nbsp;";
+            div_followpost_img+="<img src='showImageServlet?imgid="+rs_followpost_img.getString("id")+"'width='120' height=100>&nbsp;&nbsp;";
         }
         rs_followpost_img.close();
         statement_followpost_img.close();
@@ -169,9 +205,9 @@
                 <img  alt="" class="img-responsive img-circle" src="avatar/default.jpg"
                       style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
 
-                <span class="badge" style="background: #f1c40f;margin-top: 5px">姓名:<%=followpostName%></span>
+                <span class="badge" style="background: #f1c40f;margin-top: 5px">姓名:<%=followpostUserName%></span>
                 <br/>
-                <span class="badge" style="background: #2ecc71;margin-top: 5px">性别:性别</span>
+                <span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=followpostUserSex %></span>
                 <br/>
                 <span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
                 <br>
@@ -242,7 +278,6 @@
             </ul>
                 <form action="replyPostServlet" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="postid" value=<%=post_id%>>
-                    <input type="hidden" name="userid" value='1'>
                     <textarea id="TextArea1" cols="20" rows="1" name="content" class="ckeditor"></textarea>
                     <br>
                     <div>
@@ -264,6 +299,7 @@
             </div>
         </div>
     </div>
+     <jsp:include page="bottom.jsp"/>
 </div>
 </body>
 </html>

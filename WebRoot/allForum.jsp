@@ -7,18 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=gb2312" language="java" %>
 <%@include file="getForumInfo.jsp"%>
- <jsp:include page="head.jsp"/>
+
 <html>
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="css/allForum.css">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="description" content="This is my page">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
 </head>
+ <jsp:include page="head.jsp"/>
 <body>
 <div class="container">
     <div class="row">
@@ -106,3 +101,4 @@
     </div>
 </body>
 </html>
+ <jsp:include page="bottom.jsp"/>
