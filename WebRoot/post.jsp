@@ -21,6 +21,12 @@
 <body>
 
 <%
+	LoginBean login = new LoginBean();
+	login = (LoginBean)session.getAttribute("loginBean");
+	int userid0 = login.getId();//ÓÃ»§id
+	
+//////////////////////////
+
     String post_id,sub_id;
     Boolean isStar=false;
     post_id = request.getParameter("postid");

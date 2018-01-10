@@ -16,7 +16,7 @@
 <body>
 <% 
 	userBean user = new userBean();
- 	user = (userBean)session.getAttribute("userid");
+ 	user = (userBean)session.getAttribute("others");
 	int userid =  user.getUserid(); //获取传过来的id
 	
 	

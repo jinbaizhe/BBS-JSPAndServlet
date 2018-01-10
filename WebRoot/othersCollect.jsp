@@ -8,7 +8,7 @@
 <jsp:include page="head.jsp"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+<head> 
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title>Insert title here</title>
 
@@ -18,7 +18,7 @@
 	
 
 	userBean user = new userBean();
- 	user = (userBean)session.getAttribute("userid");
+ 	user = (userBean)session.getAttribute("others");
 	int userid =  user.getUserid(); //获取传过来的id
 
 	

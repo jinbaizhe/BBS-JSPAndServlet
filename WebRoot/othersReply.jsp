@@ -16,7 +16,7 @@
 <body>
  <%	
  	userBean user = new userBean();
- 	user = (userBean)session.getAttribute("userid");
+ 	user = (userBean)session.getAttribute("others");
 	int userid =  user.getUserid(); //获取传过来的id
 	
  	String sql="select * from (select bbs.followpost.follow_time,bbs.sub_forum.sub_forum_title,bbs.followpost.post_id,bbs.followpost.content,bbs.followpost.followpost_user_id,bbs.post.post_title,bbs.post.sub_id from bbs.followpost left join bbs.post on followpost.post_id=post.id left join bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id)as t where followpost_user_id=?";
