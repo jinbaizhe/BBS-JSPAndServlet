@@ -56,12 +56,13 @@
 			<td>²Ù×÷</td>
 		</tr>
 		</thead>
-		<tbody>
-		<%
+		<tbody>  
+		<% 
 			while(rowset.next()){
 				out.print("<tr><td>"+rowset.getString(4)+"</td>");
 				out.print("<td>"+rowset.getString(1)+"</td>");		
-				out.print("<td>"+"<input type='hidden' name='userid' value='"+rowset.getString(2)+"'>"+"<input type='submit' value='É¾³ý'>"+"</td>"+"</tr>");
+				out.print("<td>"+"<input type='hidden' name='userid' value='"+rowset.getString(2)+"'>"+
+				"<div style='float:left;width: 50%;padding: 1px; margin: 1px'><input type='submit' class='btn btn-primary' value='É¾³ý'style='margin:auto;width: 100%;height: 40px;padding: 4px;'></input></div>"+"</td>"+"</tr>");
 				
 			}
 		 %>

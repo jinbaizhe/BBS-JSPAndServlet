@@ -80,8 +80,11 @@
  	<br>
 	-->
 	<br>
-	</div>
-	<input type="submit" value="ÐÞ¸Ä">
+	</div> 
+	<div style="float:left;width: 50%;padding: 8px;">
+                <input type="submit" class="btn btn-primary" value="Ñ¡Ôñ"
+                   style="margin:auto;width: 30%;height: 40px;padding: 4px;"></input>
+            </div>
 </form>
 </div>
 </div>

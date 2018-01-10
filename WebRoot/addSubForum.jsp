@@ -74,7 +74,14 @@
 	<textarea name="addSubForum_info" cols="70" rows="5"></textarea>
 	
 </div>
-	<input type="submit" value="Ìí¼Ó">
+	
+    <div style="float:left;width: 50%;padding: 10px;">
+                <input type="submit" class="btn btn-primary" value="Ìí¼Ó"
+                   style="margin:auto;width: 40%;height: 60px;padding: 6px;"></input>
+            </div>
+                     
+
+
 </form>
 </body>
 </html>

@@ -66,9 +66,12 @@
   
 				<%}%>  
 	</select>
-	</div>
+	</div> 
 	<br>
-	<input type="submit" value="Ìí¼Ó">
+	 	<div style="float:left;width: 50%;padding: 20px;">
+                <input type="submit" class="btn btn-primary" value="Ìí¼Ó"
+                   style="margin:auto;width: 40%;height: 50px;padding: 13px;"></input>
+            </div>
 	
 </form>
 </div>

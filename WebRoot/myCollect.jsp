@@ -50,7 +50,7 @@
 
             <ul class="list-group">
                 <a class="list-group-item active">
-                    我的回帖
+                    我的收藏
                 </a>        
 <table class="table">
 <form action="deleteCollectServlet" method=post>  
@@ -112,8 +112,12 @@
 	}		
  %>
 </tbody>
-</table>
-<input type=submit name="delete" value="删除选中"><br>
+</table> 
+	<div style="float:left;width: 50%;padding: 10px;">
+                <input type="submit" class="btn btn-primary" value="删除选中"
+                   style="margin:auto;width: 40%;height: 60px;padding: 6px;"></input>
+            </div>
+<!-- <input type=submit name="delete" value="删除选中"><br> -->
 
 </form>
 
@@ -161,6 +165,9 @@
   var errori ='<%=request.getParameter("error")%>';
   if(errori=='fail'){
    alert("删除时出现不可描述的意外！删除失败了！");
+  }
+   else if(errori=='empty'){
+   alert("你还没选择要删除的内容！");
   }
 
   else {

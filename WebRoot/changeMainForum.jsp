@@ -62,7 +62,7 @@
 					<option value="<%=list1.get(i)%>"><%=list2.get(i)%></option>  
   
 				<%}%>  
-	</select>
+	</select> 
 	</div>
 	<br>
 	<div class="form-group">
@@ -70,7 +70,10 @@
 	<input type="text" name="changeMainForum_title">
 	</div>
 	<br>
-	<input type="submit" value="ÐÞ¸Ä">
+	<div style="float:left;width: 50%;padding: 8px;">
+                <input type="submit" class="btn btn-primary" value="Ñ¡Ôñ"
+                   style="margin:auto;width: 30%;height: 40px;padding: 4px;"></input>
+            </div>
 </form>
 </div>
 </div>

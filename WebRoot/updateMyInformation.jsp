@@ -64,17 +64,21 @@
                              男<input type="radio" name="sex" value="男" >  
                              &nbsp &nbsp女<input type="radio" name="sex" value="女">
                            <%} %>
-                        </div>
+                        </div>  
 
 
                         <dl class="form-group">
                             <dt><label for="user_profile_blog">个人简介：</label></dt>
-                            <dd><textarea name="info" cols="20" rows="10"><%=user.getInfo()%></textarea>
+                            <dd><textarea name="info" cols="70" rows="6"><%=user.getInfo()%></textarea>
                             <p class="help-block"></p>
                             </dd>
                         </dl>
-                        
-                        <input type="submit" value="提交"> 
+                         
+                        	<div style="float:left;width: 50%;padding: 20px;">
+                <input type="submit" class="btn btn-primary" value="提交"
+                   style="margin:auto;width: 80%;height: 50px;padding: 13px;"></input>
+            </div>
+                     
                     </form>
                 </div>
             </div>

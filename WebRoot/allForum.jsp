@@ -34,7 +34,11 @@
     else
     {
     %>
-        <h1>°æ¿éÁÐ±í</h1>
+        <div class="container">  
+    <div class="row">
+<img src="image/subForum.png" class="img-responsive"  width="607"  height="472"> 
+</div>
+
     </div>
     <%
 

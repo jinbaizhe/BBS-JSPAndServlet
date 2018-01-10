@@ -49,9 +49,12 @@
                         </div>
 
  
-                      
+                      <div style="float:left;width: 50%;padding: 10px;">
+                <input type="submit" class="btn btn-primary" value="添加"
+                   style="margin:auto;width: 40%;height: 60px;padding: 6px;"></input>
+            </div>
                         
-                        <input type="submit" value="提交"> 
+                        <!-- <input type="submit" value="提交"> --> 
                     </form>
                 </div>
             </div>

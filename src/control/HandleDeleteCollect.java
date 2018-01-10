@@ -32,8 +32,10 @@ public class HandleDeleteCollect extends HttpServlet {
 		LoginBean login = (LoginBean)session.getAttribute("loginBean");
 		int userid = login.getId();
 		
-		
-		if (cbox!=null)      
+		if(cbox == null){
+			response.sendRedirect("myCollect.jsp?error=empty");;
+		}
+		else if (cbox!=null)      
 				//前端的使用者,如果没打勾的话      
 			//request.getParameterValues("langtype")会接收到null值      
 		{      

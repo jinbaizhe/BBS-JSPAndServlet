@@ -60,9 +60,12 @@
   	
 					<option value="<%=list1.get(i)%>"><%=list2.get(i)%></option>  
   
-				<%}%>  
+				<%}%>   
   	</select><br>
-  	<input type="submit" value="È·¶¨">
+  	<div style="float:left;width: 50%;padding: 8px;">
+                <input type="submit" class="btn btn-primary" value="Ñ¡Ôñ"
+                   style="margin:auto;width: 30%;height: 40px;padding: 4px;"></input>
+            </div>
   </form>
   </div>
   </div>
