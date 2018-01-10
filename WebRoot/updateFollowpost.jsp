@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=gb2312" language="java" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.naming.*,javax.sql.*" %>
+ <jsp:include page="head.jsp"/>
 <html>
 <head>
     <title>Title</title>
@@ -15,7 +16,7 @@
     <link href="css/post-detail.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
 </head>
- <jsp:include page="head.jsp"/>
+
 <body>
 <script type="text/javascript">
     function getTitleAndContent(){

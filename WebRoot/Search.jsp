@@ -3,13 +3,14 @@
 <%@ page import="com.sun.rowset.*" %>
 <%@ page import="java.sql.*"%>
 <%@ page import="data.jdbcBean" %>
+<jsp:include page="head.jsp"/>
 <jsp:useBean id="pageBean" class="data.ByPageShowBean" scope="session"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title>Insert title here</title>
-<jsp:include page="head.jsp"/>
+
   <link href="css/bootstrap.min.css" rel="stylesheet">
    <script src="js/jquery.min.js"></script>
    <script src="js/bootstrap.min.js"></script>
@@ -166,7 +167,7 @@
    <Font color=blue><jsp:getProperty name="pageBean" property="totalPages"/>
    </Font>页。
  <ul class="pagination">
-<Table>
+<table>
   <tr>
   		<li><td><FORM action="" method=post>
          <Input type=hidden name="currentPage" value=
@@ -177,7 +178,7 @@
            value="<%=pageBean.getCurrentPage()+1 %>">
           <Input type=submit name="g" value="下一页"></FORM></td></tr>
 
-</Table>
+</table>
 </ul>
 </ul>
 </div>

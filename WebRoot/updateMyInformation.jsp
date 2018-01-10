@@ -79,20 +79,11 @@
                 </div>
             </div>
 
-
-
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-     
-
-
-
 </body>
-	
-
- <jsp:include page="bottom.jsp"/>
 </html>
+ <jsp:include page="bottom.jsp"/>

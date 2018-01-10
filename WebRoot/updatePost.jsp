@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=gb2312" language="java" %>
+<jsp:include page="head.jsp"/>
 <%@ include file="getForumInfo.jsp"%>
 
 <script type="text/javascript">
@@ -85,7 +86,7 @@
     <link href="css/post-detail.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
 </head>
- <jsp:include page="head.jsp"/>
+ 
 <body>
 <div class="container" style="margin-top: 50px" >
     <div class="row">

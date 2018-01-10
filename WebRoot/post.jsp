@@ -9,7 +9,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.naming.*,javax.sql.*" %>
 <%@ page import="data.LoginBean" %>
-
+<jsp:include page="head.jsp"/>
 <html>
 <head>
     <title>Title</title>
@@ -17,7 +17,6 @@
     <link href="css/post-detail.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
 </head>
- <jsp:include page="head.jsp"/>
 <body>
 
 <%
@@ -93,7 +92,6 @@
         mainforum_id=rs.getString("main_forum.id");
         mainforum_title=rs.getString("main_forum.title");
         %>
-    <div style="height:100%">
 
             <%
 //        if(pageNum==1)
@@ -161,7 +159,7 @@
             <div class="col-md-1 post-border">
             </div>
         </div>
-    </div>
+
 
     <%
         }
@@ -200,7 +198,7 @@
 %>
     <!-- »Ø¸´ÄÚÈÝ -->
 
-    <div class="container">
+
         <div class="row" style="margin-top: 5px">
             <div class="col-md-1 reply-border">
             </div>
@@ -252,7 +250,7 @@
             </div>
 
         </div>
-    </div>
+
 
     <%
         }
@@ -261,7 +259,7 @@
         connection.close();
     %>
 
-    <div class="container" style="margin-top: 10px" >
+    
         <div class="row">
             <div class="col-md-1">
             </div>
@@ -303,9 +301,9 @@
                     </div>
                 </form>
             </div>
+            <div class="col-md-1"></div>
         </div>
     </div>
-     <jsp:include page="bottom.jsp"/>
-</div>
 </body>
 </html>
+<jsp:include page="bottom.jsp"/>

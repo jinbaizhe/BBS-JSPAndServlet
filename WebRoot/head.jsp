@@ -2,6 +2,7 @@
 <%@ page import="data.LoginBean"%>
 <%@ page import="data.jdbcBean" %>
 <%@ page import="java.sql.*" %>
+<html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
   
@@ -140,4 +141,4 @@
       		</form> 
   </nav>
 </body>
-
+</html>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html;charset=gb2312" pageEncoding="gb2312"%>
-
+<jsp:include page="head.jsp"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,29 +7,30 @@
 <title>注册</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/regist.css" rel="stylesheet">
-<jsp:include page="head.jsp"/>
 </head>
-
-<div class="regist">
-    <form id="form1" role="form" action="registerServlet" method="post">
-            <!--<label for="name">用户名:</label>-->
-            <input id="username" type="text" class="form-control" name="logname" style="height: 40px; margin-top: 20px;"
-                   placeholder="请输入用户名"><s:fielderror fieldName="username"></s:fielderror>
-            <!--<label for="name"></label>-->
-        <input id="password" type="password" class="form-control" name="logpassword" style="height: 40px;margin-top: 20px;"
-               placeholder="请输入密码"><s:fielderror fieldName="password"></s:fielderror>
-      
-
-        <input id="confirm_password" type="password" class="form-control" name="againpassword" style="height: 40px;margin-top: 20px;"
-               placeholder="请重复密码"><s:fielderror fieldName="password"></s:fielderror>
-
-      
-                <input type="submit" class="btn btn-primary" value="注册"
-                   style="margin:auto;width: 80%;height: 40px;padding: 10px;"></input>
-</form>
+<div class="container" style="margin-top: 50px" >
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<div class="regist">
+		    <form id="form1" role="form" action="registerServlet" method="post">
+		            <!--<label for="name">用户名:</label>-->
+		            <input id="username" type="text" class="form-control" name="logname" style="height: 40px; margin-top: 20px;"
+		                   placeholder="请输入用户名"><s:fielderror fieldName="username"></s:fielderror>
+		            <!--<label for="name"></label>-->
+		        <input id="password" type="password" class="form-control" name="logpassword" style="height: 40px;margin-top: 20px;"
+		               placeholder="请输入密码"><s:fielderror fieldName="password"></s:fielderror>
+		      
+		
+		        <input id="confirm_password" type="password" class="form-control" name="againpassword" style="height: 40px;margin-top: 20px;"
+		               placeholder="请重复密码"><s:fielderror fieldName="password"></s:fielderror>
+		
+		      <br>
+		                <input type="submit" class="btn btn-primary" value="注册"
+		                   style="margin:auto;width: 100%;height: 40px;padding: 10px;"></input>
+			</form>
+		</div>
+	</div>
 </div>
- <jsp:include page="bottom.jsp"/>
-
 </html>
 <script> 
 //取出传回来的参数error比较
@@ -50,3 +51,5 @@
   
   }
 </script>
+
+ <jsp:include page="bottom.jsp"/>

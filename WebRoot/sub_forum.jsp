@@ -8,13 +8,13 @@
 <%@ page contentType="text/html;charset=gb2312" language="java" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.naming.*,javax.sql.*" %>
-
+<jsp:include page="head.jsp"/>
 <html>
   <head>
     <title>$Title$</title>
     <link href="css/index.css" rel="stylesheet">
   </head>
-   <jsp:include page="head.jsp"/>
+
   <body>
   <%
     int totalPostNum,totalPageNum,pageSize=2,pageNum,sub_id;

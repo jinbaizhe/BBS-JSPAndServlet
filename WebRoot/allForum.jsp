@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=gb2312" language="java" %>
+ <jsp:include page="head.jsp"/>
 <%@include file="getForumInfo.jsp"%>
 
 <html>
@@ -13,7 +14,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="css/allForum.css">
 </head>
- <jsp:include page="head.jsp"/>
+
 <body>
 <div class="container">
     <div class="row">
