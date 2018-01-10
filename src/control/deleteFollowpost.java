@@ -38,9 +38,14 @@ public class deleteFollowpost extends HttpServlet {
             Connection connection = ds.getConnection();
             PreparedStatement statement = connection.prepareStatement("delete from followpost where followpost_id=?");
             statement.setString(1,followpost_id);
-
             statement.execute();
             statement.close();
+            
+            statement = connection.prepareStatement("update post set reply_num=reply_num-1 where id = ?");
+            statement.setString(1, post_id);
+            statement.execute();
+            statement.close();
+            
             connection.close();
             out.println("<h2>É¾³ý»ØÌû³É¹¦</h2>");
         }
