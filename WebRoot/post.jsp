@@ -9,7 +9,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.naming.*,javax.sql.*" %>
 <%@ page import="data.LoginBean" %>
-
+<%@ page import="data.Validate" %>
 <html>
 <head>
     <title>Title</title>
@@ -21,12 +21,6 @@
 <body>
 
 <%
-	LoginBean login = new LoginBean();
-	login = (LoginBean)session.getAttribute("loginBean");
-	int userid0 = login.getId();//用户id
-	
-//////////////////////////
-
     String post_id,sub_id;
     Boolean isStar=false;
     post_id = request.getParameter("postid");
@@ -99,6 +93,8 @@
         subforum_title=rs.getString("sub_forum.sub_forum_title");
         mainforum_id=rs.getString("main_forum.id");
         mainforum_title=rs.getString("main_forum.title");
+        
+        Validate validate = new Validate();
         %>
     <div style="height:auto">
 
@@ -148,23 +144,61 @@
                         <strong style=" float:right;margin-right:10px">
                             <span class="badge" style="background: #ff6927;width: 50px;">楼主</span>
                         </strong>
-
-                        <a style="float:right;margin-right: 20px;" href="<%=post_delete_url%>">删除</a>
-                        <a style="float:right;margin-right: 20px;" href="<%=post_update_url%>">编辑</a>
-                        <%if(!isStar)
-                        { %>
-                        <a style="float:right;margin-right: 20px;" href="starServlet?postid=<%=post_id%>">收藏</a>
-                        <%}else{ %>
-                        <a style="float:right;margin-right: 20px;" href="unstarServlet?postid=<%=post_id%>">取消收藏</a>
-                        <%} if(post_isTop.equals("0")){%>
-                        <a style="float:right;margin-right: 20px;" href="stickPostServlet?postid=<%=post_id%>&type=1">置顶</a>
-                        <%}else{ %>
-                        <a style="float:right;margin-right: 20px;" href="stickPostServlet?postid=<%=post_id%>&type=0">取消置顶</a>
-                        <%} if(post_type.equals("0")){%>
-                        <a style="float:right;margin-right: 20px;" href="highlightPostServlet?postid=<%=post_id%>&type=1">加精</a>
-						<%}else{ %>
-						<a style="float:right;margin-right: 20px;" href="highlightPostServlet?postid=<%=post_id%>&type=0">取消加精</a>
-						<%} %>
+						<%
+							if(validate.hasDeletePostPermission(user_id, post_id)) 
+							{
+						%>
+                        		<a style="float:right;margin-right: 20px;" href="<%=post_delete_url%>">删除</a>
+                        <%	
+                        	}
+                        	if(validate.hasUpdatePostPermission(user_id, post_id))
+                        	{
+                        %>
+                        		<a style="float:right;margin-right: 20px;" href="<%=post_update_url%>">编辑</a>
+                        <%
+                        	} 
+                        %>
+                        <%
+                        	if(!isStar)
+                        	{ 
+                        %>
+                        		<a style="float:right;margin-right: 20px;" href="starServlet?postid=<%=post_id%>">收藏</a>
+                        <%
+                        	}
+                        	else
+                        	{ 
+                        %>
+                        		<a style="float:right;margin-right: 20px;" href="unstarServlet?postid=<%=post_id%>">取消收藏</a>
+                        <%
+                        	}
+                        	if(validate.isAdmin(user_id, sub_id))
+                        	{
+                        	 	if(post_isTop.equals("0"))
+                        	 	{
+                        %>
+                        			<a style="float:right;margin-right: 20px;" href="stickPostServlet?postid=<%=post_id%>&type=1&subid=<%=sub_id%>">置顶</a>
+                        <%
+                        		}
+                        		else
+                        		{ 
+                        %>
+                        			<a style="float:right;margin-right: 20px;" href="stickPostServlet?postid=<%=post_id%>&type=0&subid=<%=sub_id%>">取消置顶</a>
+                        <%
+                        		} 
+                        		if(post_type.equals("0"))
+                        		{
+                        %>
+                        			<a style="float:right;margin-right: 20px;" href="highlightPostServlet?postid=<%=post_id%>&type=1&subid=<%=sub_id%>">加精</a>
+						<%
+								}
+								else
+								{ 
+						%>
+									<a style="float:right;margin-right: 20px;" href="highlightPostServlet?postid=<%=post_id%>&type=0&subid=<%=sub_id%>">取消加精</a>
+						<%
+								} 
+							}
+						%>
                     </div>
 
                 </div>
@@ -259,8 +293,20 @@
                     <div style="float:right;margin-right:10px">
                         <span class="badge" style="float:right;margin-right:10px;background: #4b9ded;width: 50px;"><%=i%>楼</span>
                     </div>
-                    <a style="float:right;margin-right: 20px;" href="<%=followpost_delete_url%>">删除</a>
-                    <a style="float:right;margin-right: 20px;" href="<%=followpost_update_url%>">编辑</a>
+                    <%
+                    	if(validate.hasDeleteFollowpostPermission(user_id, followpostId))	
+                    	{
+                    %>
+                    		<a style="float:right;margin-right: 20px;" href="<%=followpost_delete_url%>">删除</a>
+                    <% 
+                    	}
+                    	if(validate.hasUpdateFollowpostPermission(user_id, followpostId))
+                    	{
+                    %>
+                    		<a style="float:right;margin-right: 20px;" href="<%=followpost_update_url%>">编辑</a>
+                    <%
+                    	}
+                    %>
 
                     <!--<span class="badge" style="float:right;margin-right:10px;background: #ff6927;width: 50px;">沙发</span>-->
 
@@ -288,6 +334,7 @@
         rs.close();
         statement.close();
         connection.close();
+        validate.close();
     %>
 
 

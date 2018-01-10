@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import data.LoginBean;
+import data.Validate;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,6 +33,12 @@ public class deletePost extends HttpServlet {
         	response.sendRedirect("Login.jsp");
         else
         	user_id=String.valueOf(login.getId());
+        Validate validate = new Validate();
+        if(!validate.hasDeletePostPermission(user_id, post_id))
+        {
+        	validate.close();
+        	response.sendRedirect("error.jsp");
+        }
         try {
             Context initCtx = new InitialContext();
             DataSource ds = (DataSource)initCtx.lookup("java:comp/env/jdbc/db");

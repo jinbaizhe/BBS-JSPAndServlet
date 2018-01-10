@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import data.LoginBean;
+import data.Validate;
 
 /**
  * Servlet implementation class stickPost
@@ -29,6 +30,7 @@ public class stickPost extends HttpServlet {
         String user_id = "";
         String postid = request.getParameter("postid");
         String type = request.getParameter("type");
+        String subid = request.getParameter("subid");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(true);
         LoginBean login = (LoginBean)session.getAttribute("loginBean");
@@ -36,6 +38,12 @@ public class stickPost extends HttpServlet {
         	response.sendRedirect("Login.jsp");
         else
         	user_id=String.valueOf(login.getId());
+        Validate validate = new Validate();
+        if(!validate.isAdmin(user_id, subid))
+        {
+        	validate.close();
+        	response.sendRedirect("error.jsp");
+        }
         try
         {
             Context initCtx = new InitialContext();

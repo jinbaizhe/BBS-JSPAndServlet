@@ -4,6 +4,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import data.LoginBean;
+import data.Validate;
 import data.transferToGB2312;
 import org.apache.commons.fileupload.FileItem;
 
@@ -42,6 +43,12 @@ public class updatePost extends HttpServlet {
         	response.sendRedirect("Login.jsp");
         else
         	user_id=String.valueOf(login.getId());
+        Validate validate = new Validate();
+        if(!validate.hasUpdatePostPermission(user_id, post_id))
+        {
+        	validate.close();
+        	response.sendRedirect("error.jsp");
+        }
         List<FileItem> list=null;
         try {
             Context initCtx = new InitialContext();
