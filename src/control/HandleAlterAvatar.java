@@ -49,7 +49,7 @@ public class HandleAlterAvatar extends HttpServlet {
 	            // 得到上传的文件对象
 	            File smartFile = smartUpload.getFiles().getFile(0);
 	            // 保存文件
-	            smartFile.saveAs("E:/MyEclipse Workspaces/BasketballBBS/WebRoot/avatar/" + newFilename,
+	            smartFile.saveAs("E:/MyEclipse Workspaces new/BBS/WebRoot/avatar/" + newFilename,
 	                    SmartUpload.SAVE_PHYSICAL);// 保存文件
 	        } catch (SmartUploadException e) {
 	            e.printStackTrace();

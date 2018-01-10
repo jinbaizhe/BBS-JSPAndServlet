@@ -14,10 +14,17 @@ public class HandleRegister extends HttpServlet {
 		super.init(config);
 	}
 
+	public String handleString(String s) {
+		try{
+			byte bb[] = s.getBytes("iso-8859-1");
+			s = new String (bb);
+		}catch(Exception e){}
+		return s;
+	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String logname =request.getParameter("logname").trim();
-		String logpassword = request.getParameter("logpassword").trim();
-		String againpassword = request.getParameter("againpassword").trim();		
+		String logname =handleString(request.getParameter("logname").trim());
+		String logpassword = handleString(request.getParameter("logpassword").trim());
+		String againpassword = handleString(request.getParameter("againpassword").trim());		
 		
 		String sql = "select username from bbs.user where username=?";
 		String []params={logname};

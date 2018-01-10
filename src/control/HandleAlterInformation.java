@@ -35,20 +35,23 @@ public class HandleAlterInformation extends HttpServlet {
 		response.setContentType("text/html;charset=GB2312");
 		PrintWriter out=response.getWriter();
 		String altername = handleString(request.getParameter("username").trim());
-		String altersex = handleString(request.getParameter("sex").trim());//返回的是man 或 women
+		String altersex = handleString(request.getParameter("sex").trim());
 		String alterinfo = handleString(request.getParameter("info").trim());
 		
 		HttpSession session = request.getSession(true);
 		LoginBean login = (LoginBean)session.getAttribute("loginBean");
 		String logname = login.getLogname();
-		String oldname = handleString(login.getLogname().trim());
+		//String oldname = handleString(login.getLogname().trim());
 		//判断填入的用户名是否合法或者被占用
 		boolean flag =true;
+		
 		if(altername.length()==0){
 			flag=false;
 			response.sendRedirect("MyZone.jsp?error=illegal");			
 		}
-		else{ 
+		
+		else { 
+			
 		String sql0 = "select username from bbs.user where username=?";
 		String []params0={altername};
 		try{
@@ -61,11 +64,12 @@ public class HandleAlterInformation extends HttpServlet {
 						response.sendRedirect("MyZone.jsp?error=duplicate");
 					}
 				}
-		}catch(Exception e){}
+		}catch(Exception e){out.print(e.toString());}
 		}
 		if(flag){ //如果前面的都满足条件，则进行插入数据库
+			
 		String sql = "update user set username=?,info=?,sex=?where username=?";
-		String []params = {altername,alterinfo,altersex,oldname};
+		String []params = {altername,alterinfo,altersex,logname};
 		userBean  user = new userBean();
 		user = (userBean)session.getAttribute("user");
 		user.setUsername(altername);
@@ -77,7 +81,7 @@ public class HandleAlterInformation extends HttpServlet {
 			if(flag1){
 				response.sendRedirect("MyZone.jsp");
 			}
-		}catch(Exception e){}
+		}catch(Exception e){out.print(e.toString());}
 		
 	}
 	}
