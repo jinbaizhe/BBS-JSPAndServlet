@@ -50,9 +50,10 @@
     
     
     LoginBean loginBean = (LoginBean)session.getAttribute("loginBean");
+    String user_id="";
 	if(loginBean!=null)
 	{
-		String user_id=String.valueOf(loginBean.getId());
+		user_id=String.valueOf(loginBean.getId());
 		statement = connection.prepareStatement("select * from favourite where userid=? and postid =?");
     	statement.setString(1,user_id);
     	statement.setString(2,post_id);
@@ -84,7 +85,7 @@
         sub_id=rs.getString("sub_id");
         title = rs.getString("post_title");
         author = rs.getString("username");
-	authorID = rs.getString("user.id");
+		authorID = rs.getString("user.id");
         user_sex=rs.getString("user.sex");
         replyNum = Integer.parseInt(rs.getString("reply_num"));
         viewNum = Integer.parseInt(rs.getString("view_num"));
@@ -112,16 +113,27 @@
             <div style='font-size: 20px'><a href='allForum.jsp'>全部版块</a>>>&nbsp;<a href='allForum.jsp?mainforumid=<%=mainforum_id%>'><%=mainforum_title%></a>>>&nbsp;<a href='sub_forum.jsp?subid=<%=sub_id%>'><%=subforum_title%></a></div>
 
             <div class="col-md-2 post-head">
-		<a href="othersInformation.jsp?userid=<%=authorID%>">
-                <img  alt="" class="img-responsive img-circle" src="avatar/default.jpg"
-                      style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
-
-                <span class="badge" style="background: #f1c40f;margin-top: 5px">发帖者:<%=author%></span>
-                <br/>
-                <span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=user_sex %></span>
-                <br/>
-                <span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
-		</a>
+            <%
+            	if(authorID.equals(user_id))
+            	{
+             %>
+             	<a href="MyZone.jsp">
+             <%
+             	}else{
+             %>
+				<a href="othersInformation.jsp?userid=<%=authorID%>">
+			<%
+				}
+				%>
+	                <img  alt="" class="img-responsive img-circle" src="avatar/<%=authorID%>.jpg"
+	                      style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
+	
+	                <span class="badge" style="background: #f1c40f;margin-top: 5px">发帖者:<%=author%></span>
+	                <br/>
+	                <span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=user_sex %></span>
+	                <br/>
+	                <span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
+			</a>
                 <br>
             </div>
             <div class="col-md-8 post-content">
@@ -188,7 +200,7 @@
     {
         followpostId=rs.getString("followpost_id");
         followpostUserName=rs.getString("username");
-	followpostUserID=rs.getString("user.id");
+		followpostUserID=rs.getString("user.id");
         followpostUserSex=rs.getString("user.sex");
         followpostContent=rs.getString("content");
         follow_time=rs.getString("follow_time");
@@ -212,16 +224,27 @@
             </div>
 
             <div class="col-md-2 reply-head">
-<a href="othersInformation.jsp?userid=<%=followpostUserID%>">
-                <img  alt="" class="img-responsive img-circle" src="avatar/default.jpg"
-                      style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
-
-                <span class="badge" style="background: #f1c40f;margin-top: 5px">回帖者:<%=followpostUserName%></span>
-                <br/>
-                <span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=followpostUserSex %></span>
-                <br/>
-                <span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
- </a>
+            <%
+            	if(user_id.equals(followpostUserID))
+            	{
+             %>
+             		<a href="MyZone.jsp">
+             <%
+             	}else{
+             %>
+				<a href="othersInformation.jsp?userid=<%=followpostUserID%>">
+			<%
+				} 
+			%>
+	                <img  alt="" class="img-responsive img-circle" src="avatar/<%=followpostUserID%>.jpg"
+	                      style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
+	
+	                <span class="badge" style="background: #f1c40f;margin-top: 5px">回帖者:<%=followpostUserName%></span>
+	                <br/>
+	                <span class="badge" style="background: #2ecc71;margin-top: 5px">性别:<%=followpostUserSex %></span>
+	                <br/>
+	                <span class="badge" style="background: #ff6927;margin-top: 5px">论坛等级:LV1</span>
+				 </a>
                 <br>
             </div>
             <div class="col-md-8 reply-content">
