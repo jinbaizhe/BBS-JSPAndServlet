@@ -39,6 +39,8 @@ public class Validate {
     public boolean isAdmin(LoginBean user,String subid)
     {
         boolean isValid=false;
+        if(user==null)
+        	return isValid;
         try
         {
             PreparedStatement statement = connection.prepareStatement("select * from admin where userid=? and forumid=?");
@@ -62,6 +64,8 @@ public class Validate {
     public boolean hasDeletePostPermission(LoginBean user,String postid)
     {
         boolean isValid=false;
+        if(user==null)
+        	return isValid;
         try
         {
             PreparedStatement statement = connection.prepareStatement("select * from post where id=?");
@@ -111,6 +115,8 @@ public class Validate {
     public boolean hasDeleteFollowpostPermission(LoginBean user,String followpostid)
     {
         boolean isValid=false;
+        if(user==null)
+        	return isValid;
         try
         {
             PreparedStatement statement = connection.prepareStatement("select post.user_id as postAuthor,followpost.followpost_user_id as followpostAuthor,post.sub_id as sub_id from followpost,post where followpost.post_id=post.id and followpost.followpost_id=?");

@@ -89,11 +89,15 @@
                             <div class="list-group-item-heading">
                                 <div style="font-size: 18px;">
                                     <%=subForum_title%>
+                                    <!-- 
                                     <div class="text-right" style="float: right;margin-right: 20px;font-size: 14px">Ö÷Ìâ£º1232</div>
+                                     -->
                                 </div>
                             </div>
                             <%=subForum_info%>
+                            <!--  
                             <p class="text-right" style="float: right;margin-right: 20px">°æÖ÷£º</p>
+                            -->
                         </div>
                     </a>
 <%

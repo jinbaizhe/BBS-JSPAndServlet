@@ -92,7 +92,7 @@
     rs.beforeFirst();
     int pageFirstPost=(pageNum-1)*pageSize+1;
     rs.absolute(pageFirstPost-1);
-    String title,author,postTime,lastFollowPostTime,postid,content;
+    String title,author,postTime,lastFollowPostTime,postid,content,post_isTop,post_type;
     int replyNum,viewNum;
     for(int i=pageFirstPost;i<=(pageFirstPost-1+pageSize)&&rs.next();i++)
     {
@@ -100,6 +100,8 @@
       title = rs.getString("post_title");
       author = rs.getString("username");
       content = rs.getString("content");
+      post_isTop = rs.getString("isTop");
+      post_type = rs.getString("post_type");
       replyNum = Integer.parseInt(rs.getString("reply_num"));
       viewNum = Integer.parseInt(rs.getString("view_num"));
       postTime = rs.getString("send_time");
@@ -109,10 +111,15 @@
 
       if(content.length()>30)
         content=content.substring(0,30)+"...";
+      String prefix="";
+      if(post_isTop.equals("1"))
+      	prefix="[置顶]";
+      if(post_type.equals("1"))
+      	prefix+="[精华]";
       %>
 
           <a href="post.jsp?postid=<%=postid%>&subid=<%=sub_id%>" class="list-group-item">
-            <h4 class="list-group-item-heading"><%=title%></h4>
+            <h4 class="list-group-item-heading"><%=prefix%><%=title%></h4>
             <%=content%>
             <p class="text-right" style="float: right;margin-right: 20px">作者:<%=author%>&nbsp;浏览数:<%=viewNum%>&nbsp;回复数:<%=replyNum%>&nbsp;发帖时间:<%=postTime%>&nbsp;最后回复时间:<%=lastFollowPostTime%></p>
             <br>
