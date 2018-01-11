@@ -52,7 +52,7 @@
                     我的回帖
                 </a>            
             <table class="table">   
-            <tbody>
+            
 <% 
 	String pageid=request.getParameter("pageid"); 
 	if(rowset == null){
@@ -87,21 +87,21 @@
 		String sub_forum_title = rowset.getString(2);
 		String follow_time = rowset.getString(1);
 		out.print("<tr>");
-		out.print("<td width=400>"+"Re:"+"<a href='"+"post.jsp?postid="+rowset.getString(3)+"'>"+post_title+"</a>"+"   来自"+
+		out.print("<td>"+"Re:"+"<a href='"+"post.jsp?postid="+rowset.getString(3)+"'>"+post_title+"</a>"+"   来自"+
 						"<a href='"+"sub_forum.jsp?subid="+rowset.getString(7)+"'>"+sub_forum_title+"</a>"+"   "+follow_time+"</td>");
 		out.print("</tr>");
-		out.print("<br>");
+		//out.print("<br>");
 		out.print("<tr>");
-		out.print("<td width=400>"+reply_content+"<td>");
+		out.print("<td>"+reply_content+"</td>");
 		out.print("</tr>");
-		out.print("<br>");
+		//out.print("<br>");
 		boo = rowset.next();
 	}
 	}		
 	
  %>
  
- </tbody>
+
  
  
 </table>
@@ -134,7 +134,7 @@
             
    <ul class="pagination pagination-lg" style="float:right">
 	
-    
+   
    
 </ul>
     </div>

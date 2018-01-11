@@ -97,7 +97,7 @@
 		String reply = rowset.getString(5); 
 		String view = rowset.getString(4);
 		String send_time = rowset.getString(3);
-		String view_reply = view+"/"+reply;
+		String view_reply = reply+"/"+view;
 		out.print("<tr>");
 		out.print("<td>"+"<a href ='"+"post.jsp?postid="+rowset.getString(6)+"'>"+title+"</a>"+"</td>"); 
 		out.print("<td>"+"<a href ='"+"sub_forum.jsp?subid="+rowset.getString(8)+"'>"+sub_forum+"</a>"+"</td>");

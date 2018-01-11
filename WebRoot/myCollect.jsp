@@ -99,7 +99,7 @@
 		String view = rowset.getString(5);
 		String send_time = rowset.getString(6);
 		String postid = rowset.getString(2);
-		String view_reply = view+"/"+reply;
+		String view_reply = reply+"/"+view;
 		out.print("<tr>");
 		out.print("<td><input type='checkbox' name='cbox' value='"+postid+"'></td>");
 		out.print("<td>"+"<a href='"+"post.jsp?postid="+rowset.getString(2)+"'>"+title+"</a>"+"</td>");
