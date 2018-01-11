@@ -145,7 +145,7 @@
                             <span class="badge" style="background: #ff6927;width: 50px;">楼主</span>
                         </strong>
 						<%
-							if(validate.hasDeletePostPermission(user_id, post_id)) 
+							if(validate.hasDeletePostPermission(loginBean, post_id)) 
 							{
 						%>
                         		<a style="float:right;margin-right: 20px;" href="<%=post_delete_url%>">删除</a>
@@ -171,7 +171,7 @@
                         		<a style="float:right;margin-right: 20px;" href="unstarServlet?postid=<%=post_id%>">取消收藏</a>
                         <%
                         	}
-                        	if(validate.isAdmin(user_id, sub_id))
+                        	if(validate.isAdmin(loginBean, sub_id))
                         	{
                         	 	if(post_isTop.equals("0"))
                         	 	{
@@ -294,7 +294,7 @@
                         <span class="badge" style="float:right;margin-right:10px;background: #4b9ded;width: 50px;"><%=i%>楼</span>
                     </div>
                     <%
-                    	if(validate.hasDeleteFollowpostPermission(user_id, followpostId))	
+                    	if(validate.hasDeleteFollowpostPermission(loginBean, followpostId))	
                     	{
                     %>
                     		<a style="float:right;margin-right: 20px;" href="<%=followpost_delete_url%>">删除</a>

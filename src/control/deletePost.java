@@ -34,7 +34,7 @@ public class deletePost extends HttpServlet {
         else
         	user_id=String.valueOf(login.getId());
         Validate validate = new Validate();
-        if(!validate.hasDeletePostPermission(user_id, post_id))
+        if(!validate.hasDeletePostPermission(login, post_id))
         {
         	validate.close();
         	response.sendRedirect("error.jsp");

@@ -2,6 +2,7 @@ package data;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,16 +36,16 @@ public class Validate {
 
     }
 
-    public boolean isAdmin(String userid,String subid)
+    public boolean isAdmin(LoginBean user,String subid)
     {
         boolean isValid=false;
         try
         {
             PreparedStatement statement = connection.prepareStatement("select * from admin where userid=? and forumid=?");
-            statement.setString(1, userid);
+            statement.setString(1, user.getId()+"");
             statement.setString(2, subid);
             ResultSet rs = statement.executeQuery();
-            if(rs.next())
+            if(rs.next()||(user.getType().equals("1")))
             {
                 isValid=true;
             }
@@ -58,7 +59,7 @@ public class Validate {
         return isValid;
     }
 
-    public boolean hasDeletePostPermission(String userid,String postid)
+    public boolean hasDeletePostPermission(LoginBean user,String postid)
     {
         boolean isValid=false;
         try
@@ -70,7 +71,7 @@ public class Validate {
             {
                 String postAuthorID=rs.getString("user_id");
                 String subid= rs.getString("sub_id");
-                if(postAuthorID.equals(userid)||isAdmin(userid, subid))
+                if(postAuthorID.equals(user.getId()+"")||isAdmin(user, subid))
                     isValid=true;
             }
             rs.close();
@@ -107,7 +108,7 @@ public class Validate {
         return isValid;
     }
 
-    public boolean hasDeleteFollowpostPermission(String userid,String followpostid)
+    public boolean hasDeleteFollowpostPermission(LoginBean user,String followpostid)
     {
         boolean isValid=false;
         try
@@ -120,7 +121,7 @@ public class Validate {
                 String postAuthorID=rs.getString("postAuthor");
                 String followpostAuthorID=rs.getString("followpostAuthor");
                 String subid=rs.getString("sub_id");
-                if(postAuthorID.equals(userid)||followpostAuthorID.equals(userid)||isAdmin(userid,subid))
+                if(postAuthorID.equals(user.getId())||followpostAuthorID.equals(user.getId())||isAdmin(user,subid))
                     isValid=true;
             }
             rs.close();

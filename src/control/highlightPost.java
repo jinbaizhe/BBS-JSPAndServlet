@@ -37,7 +37,7 @@ public class highlightPost extends HttpServlet {
         else
         	user_id=String.valueOf(login.getId());
         Validate validate = new Validate();
-        if(!validate.isAdmin(user_id, subid))
+        if(!validate.isAdmin(login, subid))
         {
         	validate.close();
         	response.sendRedirect("error.jsp");

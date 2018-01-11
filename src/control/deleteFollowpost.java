@@ -34,7 +34,7 @@ public class deleteFollowpost extends HttpServlet {
         else
         	user_id=String.valueOf(login.getId());
         Validate validate = new Validate();
-        if(!validate.hasDeleteFollowpostPermission(user_id, followpost_id))
+        if(!validate.hasDeleteFollowpostPermission(login, followpost_id))
         {
         	validate.close();
         	response.sendRedirect("error.jsp");

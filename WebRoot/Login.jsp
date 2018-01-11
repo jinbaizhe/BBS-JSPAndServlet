@@ -9,8 +9,13 @@
 </head>
   <%
   	String preurl=request.getHeader("referer");
-  	int pos=preurl.lastIndexOf('/');
-  	preurl=preurl.substring(pos+1);
+  	if(preurl==null)
+  		preurl="";
+  	else
+  	{
+  		int pos=preurl.lastIndexOf('/');
+  		preurl=preurl.substring(pos+1);
+  	}
    %>
 <body>
 <div class="container" style="margin-top: 50px" >

@@ -35,12 +35,8 @@
     else
     {
     %>
-        <div class="container">  
-    <div class="row">
-<img src="image/subForum.png" class="img-responsive"  width="607"  height="472"> 
-</div>
-
-    </div>
+	<img src="image/subForum.png" class="img-responsive"  width="607"  height="472"> 
+	</div>
     <%
 
     }
@@ -72,9 +68,8 @@
         while (crs_sub.next())
         {	
         	
-        	if((specificid.equals("0"))&&i==MAXSUBFORUMNUM)
+        	if((specificid.equals("0"))&&i>=MAXSUBFORUMNUM)
         		break;
-        	i++;
             subForum_id=crs_sub.getString("id");
             subForum_title=crs_sub.getString("sub_forum_title");
             subForum_info=crs_sub.getString("info");
@@ -85,6 +80,7 @@
             	subForum_info="&nbsp;";
             if(subForum_main_id.equals(mainForum_id))
             {
+            	i++;
 %>
                     <a href="sub_forum.jsp?subid=<%=subForum_id%>" class="list-group-item">
                         <div>

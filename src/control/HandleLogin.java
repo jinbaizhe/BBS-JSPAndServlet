@@ -41,14 +41,13 @@ public class HandleLogin extends HttpServlet {
 		boolean boo  = (logname.length()>0)&&(logpassword.length()>0);
 		String sql = "select * from user where username=? and userpassword=?";		
 		String []params = {logname,logpassword};
-		System.out.println(preurl);
 		try{
 			jdbcBean db = new jdbcBean();
 			if(boo){
 				ResultSet rs = db.query(sql, params);
 				if(rs.next()){
 					success(request,response,logname);
-					if(preurl==null||preurl.equals(""))
+					if(preurl==null||preurl.equals("")||preurl.equals("Login.jsp"))
 						response.sendRedirect("index.jsp");
 					else
 						response.sendRedirect(preurl);
@@ -69,15 +68,17 @@ public class HandleLogin extends HttpServlet {
 	public void success(HttpServletRequest request,HttpServletResponse response,String logname){
 		LoginBean login = new LoginBean();
 		HttpSession session = request.getSession(true); 
-		String find_id = "select id from user where username=?";
+		String find_id = "select id,type from user where username=?";
 		String []params={logname};
 		
 		int id=-1;
+		String type="0";
 		try{
 			jdbcBean db = new jdbcBean();
 		    ResultSet rs = db.query(find_id,params);
 		    if(rs.next()){
 		    	id=rs.getInt(1);
+		    	type=rs.getString("type");
 		    }
 			login = (LoginBean)session.getAttribute("loginBean");
 			if(login == null){
@@ -87,11 +88,13 @@ public class HandleLogin extends HttpServlet {
 			}
 			login.setId(id);
 			login.setLogname(logname);
+			login.setType(type);
 		}catch(Exception e){
 			login = new LoginBean();
 			session.setAttribute("loginBean", login);
 			login.setId(id);
 			login.setLogname(logname);
+			login.setType(type);
 		}
 	}
 	
