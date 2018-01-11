@@ -42,12 +42,6 @@ public class updateFollowpost extends HttpServlet {
         	response.sendRedirect("Login.jsp");
         else
         	user_id=String.valueOf(login.getId());
-        Validate validate = new Validate();
-        if(!validate.hasUpdateFollowpostPermission(user_id, followpost_id))
-        {
-        	validate.close();
-        	response.sendRedirect("error.jsp");
-        }
         List<FileItem> list=null;
         try {
             Context initCtx = new InitialContext();
@@ -83,6 +77,12 @@ public class updateFollowpost extends HttpServlet {
                     else if (name.equals("info"))
                         info = value;
                 }
+            }
+            Validate validate = new Validate();
+            if(!validate.hasUpdateFollowpostPermission(user_id, followpost_id))
+            {
+            	validate.close();
+            	response.sendRedirect("error.jsp");
             }
             for (FileItem item : list) {
                 //如果fileitem中封装的是上传文件

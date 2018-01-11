@@ -50,11 +50,12 @@
 			<!-- ÂÖ²¥£¨Carousel£©ÏîÄ¿ -->
 			<div class="carousel-inner">
 			<%
-				String imgid,post_title;
+				String imgid,post_title,post_id;
 				for(int i=0;rs.next()&&i<num&&i<MAXIMAGENUM;i++)
 				{
 					imgid=rs.getString("imageid");
 					post_title=rs.getString("post_title");
+					post_id=rs.getString("postid");
 					if(i==0)
 					{
 			%>
@@ -65,9 +66,10 @@
 					<div class="item">
 			<%
 					}
-			%>
-						<img style="width:100%;height:300px" class="center-block" src="showImageServlet?imgid=<%=imgid%>" alt="<%=post_title%>" >
-						<div class="carousel-caption"><%=post_title%></div>
+			%>			<a href='post.jsp?postid=<%=post_id%>'>
+							<img style="width:100%;height:300px" class="center-block" src="showImageServlet?imgid=<%=imgid%>" alt="<%=post_title%>" >
+							<div class="carousel-caption"><%=post_title%></div>
+						</a>
 					</div>
 			<%
 				}
@@ -84,6 +86,9 @@
 		</div> 
 	</div>
 	</div>
+	
+	
   </body>
 </html>
-<jsp:include page="bottom.jsp"/>
+
+ <jsp:include page="bottom.jsp"/>
