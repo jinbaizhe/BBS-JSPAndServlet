@@ -88,11 +88,11 @@
 		out.print("<td width=400>"+"Re:"+"<a href='"+"post.jsp?postid="+rowset.getString(3)+"'>"+post_title+"</a>"+"   ю╢вт"+
 						"<a href='"+"sub_forum.jsp?subid="+rowset.getString(7)+"'>"+sub_forum_title+"</a>"+"   "+follow_time+"</td>");
 		out.print("</tr>");
-		out.print("<br>");
+		//out.print("<br>");
 		out.print("<tr>");
 		out.print("<td width=400>"+reply_content+"<td>");
 		out.print("</tr>");
-		out.print("<br>");
+		//out.print("<br>");
 		boo = rowset.next();
 	}
 	}		
