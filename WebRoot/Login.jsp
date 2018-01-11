@@ -7,7 +7,11 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/login.css" rel="stylesheet">
 </head>
-
+  <%
+  	String preurl=request.getHeader("referer");
+  	int pos=preurl.lastIndexOf('/');
+  	preurl=preurl.substring(pos+1);
+   %>
 <body>
 <div class="container" style="margin-top: 50px" >
 	  <div class="col-md-4"></div>
@@ -22,6 +26,7 @@
 		                   placeholder="ÇëÊäÈëÃÜÂë"><s:fielderror fieldName="password"></s:fielderror>
 		        <div style="height: 100px;width: 100%;margin-top: 30px;">
 		            <div style="float:left;width: 50%;padding: 20px;">
+		            	<input type="hidden" name="preurl" value="<%=preurl%>"></input>
 		                <input type="submit" class="btn btn-primary" value="µÇÂ¼"
 		                   style="margin:auto;width: 80%;height: 50px;padding: 13px;"></input>
 		            </div>

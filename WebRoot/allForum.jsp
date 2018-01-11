@@ -20,6 +20,7 @@
     <div class="row">
 
 <%
+	final int MAXSUBFORUMNUM=5;
     String specificid=request.getParameter("mainforumid");
     if(specificid==null)
     {
@@ -67,14 +68,21 @@
                 <div class="row">
     <%
         crs_sub.beforeFirst();
+        int i =0;
         while (crs_sub.next())
-        {
+        {	
+        	
+        	if((specificid.equals("0"))&&i==MAXSUBFORUMNUM)
+        		break;
+        	i++;
             subForum_id=crs_sub.getString("id");
             subForum_title=crs_sub.getString("sub_forum_title");
             subForum_info=crs_sub.getString("info");
             subForum_main_id=crs_sub.getString("main_id");
             if (subForum_info.length()>40)
                 subForum_info=subForum_info.substring(0,40)+"...";
+            else if(subForum_info.equals(""))
+            	subForum_info="&nbsp;";
             if(subForum_main_id.equals(mainForum_id))
             {
 %>

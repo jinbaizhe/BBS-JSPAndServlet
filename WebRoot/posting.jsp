@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=gb2312" language="java" %>
  <jsp:include page="head.jsp"/>
 <%@ include file="getForumInfo.jsp"%>
+<%@ page import="data.LoginBean" %>
 <%
     String post_title,post_content;
     post_title=request.getParameter("post_title");
@@ -20,6 +21,10 @@
     String main_forum_id="",main_forum="",sub_forum="";
     if(sub_forum_id==null||sub_forum_id.equals(""))
         sub_forum_id="1";
+
+	LoginBean login = (LoginBean)session.getAttribute("loginBean");
+    if(login==null)
+        response.sendRedirect("Login.jsp");
 
     crs_sub.beforeFirst();
     while (crs_sub.next())

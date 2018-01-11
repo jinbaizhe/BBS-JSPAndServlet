@@ -17,7 +17,7 @@
 
   <body>
   <%
-    int totalPostNum,totalPageNum,pageSize=2,pageNum,sub_id;
+    int totalPostNum,totalPageNum,pageSize=10,pageNum,sub_id;
     String temp = request.getParameter("subid");
     if(temp==null||temp.equals(""))
       sub_id=1;

@@ -37,17 +37,21 @@ public class HandleLogin extends HttpServlet {
 	
 		String logname = handleString(request.getParameter("logname").trim());
 		String logpassword = handleString(request.getParameter("logpassword").trim());
+		String preurl=request.getParameter("preurl");
 		boolean boo  = (logname.length()>0)&&(logpassword.length()>0);
 		String sql = "select * from user where username=? and userpassword=?";		
 		String []params = {logname,logpassword};
-		
+		System.out.println(preurl);
 		try{
 			jdbcBean db = new jdbcBean();
 			if(boo){
 				ResultSet rs = db.query(sql, params);
 				if(rs.next()){
 					success(request,response,logname);
-					response.sendRedirect("index.jsp");
+					if(preurl==null||preurl.equals(""))
+						response.sendRedirect("index.jsp");
+					else
+						response.sendRedirect(preurl);
 				}
 				else{
 					response.sendRedirect("Login.jsp?error=unexist");
