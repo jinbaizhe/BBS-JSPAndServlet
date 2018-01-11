@@ -65,7 +65,7 @@ create table followpost
 (
    followpost_id        int auto_increment,#跟帖id
    post_id              int not null,#帖子id
-   followpost_user_id              int,
+   followpost_user_id   int,
    content              char(255),
    follow_time          datetime,#跟帖时间
    update_time          datetime,#最后一次修改时间
@@ -79,7 +79,7 @@ create table main_forum
 (
    id                   int auto_increment,#主板块id
    title                char(30) not null,
-   info                 char(100),
+   info                 char(255),
    time                 datetime,
    primary key (id)
 );
@@ -92,7 +92,7 @@ create table post
    id                   int auto_increment,#帖子id
    sub_id               int,#子版块的id号
    user_id              int,
-   post_title                char(50),
+   post_title           char(255),
    content              char(255),
    send_time            datetime,#发帖时间
    update_time          datetime,#最后一次修改时间
@@ -112,7 +112,7 @@ create table sub_forum
 (
    id                   int auto_increment,#子版块的id号
    sub_forum_title                char(30) not null,
-   info                 char(100),
+   info                 char(255),
    main_id              int,#主板块的id号
    time                 datetime,
    primary key (id)

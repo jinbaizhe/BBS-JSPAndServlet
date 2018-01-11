@@ -1,0 +1,17 @@
+insert into main_forum(title,info,time) values("步行街","步行街来自虎扑步行街社区.","2018-01-11 16:50:58");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("步行街主干道","逛虎扑步行街极易上瘾，请各位注意控制时间哟 ^_^ ","2","2018-01-11 16:50:58");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("影视区","影海视界，一切尽在这里，一切皆有可能！本版随意盗墓，严禁讨论zz，开动吧！","2","2018-01-11 16:50:59");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("ACG区","从旧石器时代的石洞壁画到现在阿宅们电子屏上的动画，我们一直在被人类无限的想象力与可能性所感动！欢迎收藏ACG专区！","2","2018-01-11 16:50:59");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("音乐区","从古典到流行，从蓝调到爵士，从民乐到乡村，从摇滚到说唱，爱音乐、爱生活，感受这世上最美妙的食物！随意盗墓。","2","2018-01-11 16:50:59");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("爆照区","1900年，“盒子布朗尼”相机面世，照相机在普通人中间开始普及，而自拍，也是从这一年开始流行。自拍、晒照都来这里吧！别害羞哦！","2","2018-01-11 16:51:00");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("手机壁纸区","手机壁纸在这里分享，撑爆你的手机容量！发图请不要添加水印！","2","2018-01-11 16:51:00");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("IT数码区","手机、电脑、电子产品开箱评测、新闻资讯、咨询求助，任何数码问题，都来这里解决！欢迎分享开箱评测！详情见版规","2","2018-01-11 16:51:00");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("股票区","股市有风险，投资须谨慎。","2","2018-01-11 16:51:00");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("车友交流","JRs的汽车家园，我们一起分享国外车讯，新车测评体验，当然还有街拍的好车与各类车模mm。 ","2","2018-01-11 16:51:01");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("学府路","求职升学、寻找校友、校园话题、高校专楼，请关注步行街的学府路，第一时间推送学府路热帖。","2","2018-01-11 16:51:02");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("破瓜区","步行街新人村。破瓜，步行街最早的黑话之一。意为破除了处子之身，由一个新JR变成了老JR，在这里得到更多的成长吧！","2","2018-01-11 16:51:02");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("万事屋","这里是步行街的哆啦A梦口袋，是JRs求助的万事屋，关注这里，等于多了一个人生导师。在这里，你是老师，是学生，也是朋友。","2","2018-01-11 16:51:02");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("文学区","谈文论史撰原创，请君且从文区始！","2","2018-01-11 16:51:03");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("情感区","笑声，哭声，誓声，声声动人；爱情，友情，亲情，情情入心","2","2018-01-11 16:51:03");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("健身和运动健康","用运动保持健康，欢迎所有参与运动健身的网友！ 欢迎各位！","2","2018-01-11 16:51:03");
+insert into sub_forum(sub_forum_title,info,main_id,time) values ("虎扑助学基金会","知善，然后做做力所能及的善事。","2","2018-01-11 16:51:03");
