@@ -13,7 +13,7 @@
 
   <link href="css/bootstrap.min.css" rel="stylesheet">
    <script src="js/jquery.min.js"></script>
-   <script src="js/bootstrap.min.js"></script>
+   
 </head>   
 <body> 
 <div class="col-md-9">
@@ -70,8 +70,9 @@
 		<td><label><input name="type" type="radio" value="postTitle" />帖子标题</label> 
 			<label><input name="type" type="radio" value="postContent" />主题帖内容</label> 
 			<label><input name="type" type="radio" value="all" checked="checked" />全部</label> 
+			</td>
 	</div>
-		</td>
+		
 	</tr>
 	<tr>
 		<td><label for="name">板块:</label></td>
@@ -106,10 +107,10 @@
 <jsp:setProperty name="pageBean" property="pageSize" param="pageSize"/>
 <jsp:setProperty name="pageBean" property="currentPage" param="currentPage"/>
 
-<%
+<% 
 	 CachedRowSetImpl rowSet=pageBean.getRowset();
       if(rowSet==null) {
-         out.print("请提交搜索的内容！");
+         out.print("请输入搜索内容再提交！");
          return;  
       }%>
       <table>

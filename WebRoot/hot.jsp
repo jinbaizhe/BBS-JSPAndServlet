@@ -92,8 +92,9 @@
     	</div>
     	
     	<%
+    	db.close();
     }catch(Exception e){}
-
+   
  %>
 </body>
 </html>

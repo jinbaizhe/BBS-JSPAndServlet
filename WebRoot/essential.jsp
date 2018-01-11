@@ -86,6 +86,7 @@
     	</div>
     	
     	<%
+    	db.close();
     }catch(Exception e){}
 
  %>
