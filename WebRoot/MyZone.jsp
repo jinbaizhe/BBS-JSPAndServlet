@@ -39,11 +39,11 @@ top.location.href = location.href;
 					user.setRegister_time(rs.getString(11));
 				}
 				}catch(Exception e){}
-				 	
-			%>
+				 	 
+			%>  
 				
- <% String avatarSrc = "avatar/"+user.getAvatar();  %>
- 
+ <% String avatarSrc = "avatar/"+ user.getAvatar();  %>
+ 	
  <div class="container" style="margin-top: 30px">
     <div class="row">
         <div class="col-xs-3">

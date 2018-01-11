@@ -10,8 +10,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title></title>
-</head>
+</head> 
 <body>
+
 	<%
 		LoginBean login= (LoginBean)session.getAttribute("loginBean");
 		userBean user = new userBean();
@@ -33,10 +34,11 @@
 		}
 		}catch(Exception e){}
 		db.close();
-			
+			 
 	 %>
 	 <% String avatarSrc = "avatar/"+user.getAvatar();   %>
 	 <img src="<%=avatarSrc %>" width=100 height=100>
+	 路径<%=request.getContextPath()%>
 	<a href="updateMyInformation.jsp">更新自己的头像和档案</a>
 	 	<h1>	<%=user.getUsername() %> </h1> <br>
 	 	性别：<%=user.getSex() %><br>自我介绍:<%=user.getInfo() %><br>加入时间：<%=user.getRegister_time() %><br>

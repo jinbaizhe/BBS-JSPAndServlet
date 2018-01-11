@@ -7,9 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title>修改个人信息</title>
  <jsp:include page="head.jsp"/>
-</head>
-<body>
+</head> 
+<body> 
 <% userBean user = (userBean)session.getAttribute("user");
+	//String path =this.getServletContext().getRealPath("/")+"avatar\\"; 
 	   String avatarSrc = "avatar/"+user.getAvatar(); //头像路径
 	   
 	%>
@@ -21,6 +22,7 @@
                   <li role="presentation"><a href="mySend.jsp">我的发帖</a></li>
                   <li role="presentation"><a href="myReply.jsp">我的回帖</a></li>
                   <li role="presentation"><a href="myCollect.jsp">我的收藏</a></li>
+                   <li role="presentation"><a href="alterPassword.jsp">我的安全</a></li>
             </ul>
 		</div>
 <div class="col-xs-9">
