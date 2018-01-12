@@ -5,7 +5,9 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-  
+  	<meta http-equiv="pragma" content="no-cache"> 
+     <meta http-equiv="cache-control" content="no-cache"> 
+     <meta http-equiv="expires" content="0">   
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -26,7 +28,15 @@
         <li><a href="essential.jsp">精华帖</a></li>
         <li><a href="allForum.jsp">版块总览</a></li>
     
-    </ul>
+    </ul> 
+    <% //禁止浏览器缓存。
+    response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1  
+	response.addHeader("Cache-Control", "no-store"); //Firefox  
+	response.setHeader("Pragma", "no-cache"); //HTTP 1.0  
+	response.setDateHeader("Expires", -1);  
+	response.setDateHeader("max-age", 0);  
+    
+     %>
    <%
    		
     	LoginBean login= (LoginBean)session.getAttribute("loginBean");

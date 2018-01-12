@@ -30,6 +30,9 @@ public class HandleAlterAvatar extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		 response.setHeader("Pragma","No-cache"); 
+		 response.setHeader("Cache-Control","no-cache"); 
+		 response.setDateHeader("Expires", 0);  
 		 HttpSession session = request.getSession(true);
 		 LoginBean login = new LoginBean();
 		 login = (LoginBean)session.getAttribute("loginBean"); //得到当前登录 的用户

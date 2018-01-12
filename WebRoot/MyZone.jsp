@@ -18,6 +18,7 @@ top.location.href = location.href;
 
 </head>
 <body>
+	
 	<%
 				LoginBean login= (LoginBean)session.getAttribute("loginBean");
 				userBean user = new userBean();

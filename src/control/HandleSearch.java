@@ -93,6 +93,7 @@ public class HandleSearch extends HttpServlet {
 			rowSet = new CachedRowSetImpl();
 			rowSet.populate(rs);
 			pageBean.setRowset(rowSet);
+			db.close();
 			}
 		}catch(Exception e){}
 		

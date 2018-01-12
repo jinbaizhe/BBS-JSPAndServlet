@@ -47,7 +47,7 @@
 	  	 	list1.add(rs0.getString(1));//id
 	  	 	list2.add(rs0.getString(2));//title
 	  	 }
-	  	 
+	  	 db.close();
 	  }catch(Exception e){}
 	  
 	
