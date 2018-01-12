@@ -157,7 +157,7 @@ create table image
 (
 	id int primary key auto_increment,
     user_id int,#上传者用户id
-    name char(50),#图片名
+    name char(255),#图片名
     post_id int,#帖子id
     followpost_id int,#回帖id
     upload_time datetime,#上传时间
