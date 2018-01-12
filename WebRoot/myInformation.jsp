@@ -31,12 +31,12 @@
 			user.setStatus(rs.getInt(8));
 			user.setType(rs.getInt(9));
 			user.setRegister_time(rs.getString(11));
-		}
-		}catch(Exception e){}
+		} 
+		}catch(Exception e){} 
 		db.close();
 			 
 	 %>
-	 <% String avatarSrc = "avatar/"+user.getAvatar();   %>
+	 <% String avatarSrc = "avatar/"+user.getAvatar()+"?a="+Math.random();   %>
 	 <img src="<%=avatarSrc %>" width=100 height=100>
 	 路径<%=request.getContextPath()%>
 	<a href="updateMyInformation.jsp">更新自己的头像和档案</a>

@@ -61,8 +61,8 @@
     		 	File f = new File(path);
     		 	if(!(f.exists())){
     		 		avatarPath = "avatar/default.jpg";
-    		 	}
     		 	
+    		 	}
     		 	
     		 	 %>
     		 		<a href="post.jsp?postid=<%=rs1.getString(9)%>" class="list-group-item">
@@ -99,7 +99,6 @@
     	<%
     	db.close();
     }catch(Exception e){}
-
  %>
 </body>
 </html>
