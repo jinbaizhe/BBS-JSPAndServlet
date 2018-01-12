@@ -10,6 +10,7 @@
 <%@ page import="javax.naming.*,javax.sql.*" %>
 <%@ page import="data.LoginBean" %>
 <%@ page import="data.Validate" %>
+<%@ page import="java.io.*" %>
 <html>
 <head>
     <title>Title</title>
@@ -93,7 +94,12 @@
         subforum_title=rs.getString("sub_forum.sub_forum_title");
         mainforum_id=rs.getString("main_forum.id");
         mainforum_title=rs.getString("main_forum.title");
-        
+        String avatarPath1="avatar/"+authorID+".jpg";
+        String path1  = this.getServletContext().getRealPath("/")+"avatar\\"+authorID+".jpg";
+    	File f1 = new File(path1);
+    	if(!(f1.exists())){
+    		avatarPath1 = "avatar/default.jpg";
+    	}
         Validate validate = new Validate();
         %>
     <div style="height:auto">
@@ -121,7 +127,7 @@
 			<%
 				}
 				%>
-	                <img  alt="" class="img-responsive img-circle" src="avatar/<%=authorID%>.jpg"
+	                <img  alt="" class="img-responsive img-circle" src="<%=avatarPath1%>"
 	                      style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
 	
 	                <span class="badge" style="background: #f1c40f;margin-top: 5px">发帖者:<%=author%></span>
@@ -249,6 +255,12 @@
         }
         rs_followpost_img.close();
         statement_followpost_img.close();
+        String avatarPath2="avatar/"+followpostUserID+".jpg";
+        String path2  = this.getServletContext().getRealPath("/")+"avatar\\"+followpostUserID+".jpg";
+    	File f2 = new File(path1);
+    	if(!(f2.exists())){
+    		avatarPath2 = "avatar/default.jpg";
+    	}
 %>
     <!-- 回复内容 -->
 
@@ -270,7 +282,7 @@
 			<%
 				} 
 			%>
-	                <img  alt="" class="img-responsive img-circle" src="avatar/<%=followpostUserID%>.jpg"
+	                <img  alt="" class="img-responsive img-circle" src="<%=avatarPath2%>"
 	                      style="margin:1px 1px;width: 120px;height: 120px;margin: 30px auto;"/>
 	
 	                <span class="badge" style="background: #f1c40f;margin-top: 5px">回帖者:<%=followpostUserName%></span>
