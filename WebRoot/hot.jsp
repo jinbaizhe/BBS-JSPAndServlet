@@ -72,10 +72,10 @@
                             <div class="list-group-item-heading">
                                 <div style="font-size: 18px;">
                                 	<% if (istop.equals("1")){
-                                	 		title = rs1.getString(5)+"[置顶]";
+                                	 		title = "[置顶]"+rs1.getString(5);
                                 	 		}
                                 	 	if(type.equals("1")){
-                                	 		title = title +"[精华]";
+                                	 		title = "[精华]"+title ;
                                 	 	}
                                 	 	
                                 	 	

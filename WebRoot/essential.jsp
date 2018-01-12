@@ -49,9 +49,9 @@
     		 while(rs1.next()){
     				 String istop = rs1.getString(2);    				 
     		 		String postUserid =rs1.getString(4).trim(); 	
-    		 		String title = rs1.getString(5)+"[精华]";		
+    		 		String title = "[精华]"+rs1.getString(5);		
     		 		if (istop.equals("1")){
-    		 			title =rs1.getString(5)+"[置顶]"+"[精华]";
+    		 			title ="[置顶]"+"[精华]"+rs1.getString(5);
     		  		}	 
     				String avatarPath = "avatar/"+postUserid+".jpg";
     		 	%> 
