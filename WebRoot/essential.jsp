@@ -2,6 +2,7 @@
 <%@ page import="data.LoginBean"%>
 <%@ page import="data.jdbcBean" %>
 <%@ page import="java.sql.*" %>
+<%@ page import="java.io.*" %>
  <jsp:include page="head.jsp"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -54,6 +55,14 @@
     		  		}	 
     				String avatarPath = "avatar/"+postUserid+".jpg";
     		 	%> 
+    		 	
+    		 	<%
+    		 		File f = new File(avatarPath);
+    		 	if(!(f.exists())){
+    		 		avatarPath = "avatar/default.jpg";
+    		 	}
+    		 	
+    		 	 %>
     		 		<a href="post.jsp?postid=<%=rs1.getString(9)%>" class="list-group-item">
                         <div> 
                             <img  alt=""  align="left" class="img-responsive" src="<%=avatarPath %>"

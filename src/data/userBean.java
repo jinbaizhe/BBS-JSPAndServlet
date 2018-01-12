@@ -5,7 +5,7 @@ public class userBean {
 	String register_time="";
 	String sex =" ";
 	String info ="并没有留下什么信息";
-	String avatar="defualt.jpg";
+	String avatar="default.jpg";
 	int status=0,type=0,userid=0; // 未被封禁，普通用户
 	
 	public int getUserid() {
