@@ -18,6 +18,7 @@
 
 
 <%
+	final int MAXSUBFORUMNUM=5;
    	String sql0 = "select title,id from bbs.main_forum";
     try{
    		jdbcBean db = new jdbcBean();
@@ -42,13 +43,17 @@
     		String sql1 ="select * from (select bbs.sub_forum.main_id,bbs.post.post_type,bbs.sub_forum.id,bbs.post.user_id,bbs.post.post_title,bbs.post.send_time,bbs.post.view_num,bbs.post.reply_num,bbs.post.id as post_id,bbs.post.isTop,bbs.sub_forum.sub_forum_title from  bbs.post inner join  bbs.sub_forum on bbs.post.sub_id=bbs.sub_forum.id) as t left join bbs.user on bbs.user.id=user_id where main_id=? order by isTop desc, reply_num desc";
     		String []params1 = {rs.getString(2)}; //Ö÷°å¿éºÅ
     		 ResultSet rs1 = db.query(sql1, params1);
-    		  
+    		  int i = 0 ;
     		 while(rs1.next()){  
+    		 
+    		 		if(i>=MAXSUBFORUMNUM)
+        				break;  		 
     		 		String title = rs1.getString(5);
     		 		String istop = rs1.getString(10);
     		 		String type = rs1.getString(2);
     				String postUserid =rs1.getString(4).trim(); 				 
     				String avatarPath = "avatar/"+postUserid+".jpg";
+    				i++;
     				//out.print(avatarPath);
     		 	%>  
     		 		<a href="post.jsp?postid=<%=rs1.getString(9) %>" class="list-group-item">
