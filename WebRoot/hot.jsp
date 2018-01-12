@@ -58,7 +58,8 @@
     				//out.print(avatarPath);
     		 	%>  
     		 	<%  
-    		 	File f = new File(avatarPath);
+    		 	String path  = this.getServletContext().getRealPath("/")+"avatar\\"+postUserid+".jpg";
+    		 	File f = new File(path);
     		 	if(!(f.exists())){
     		 		avatarPath = "avatar/default.jpg";
     		 	}
