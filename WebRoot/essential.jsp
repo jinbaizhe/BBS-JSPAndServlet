@@ -61,7 +61,7 @@
     		 	File f = new File(path);
     		 	if(!(f.exists())){
     		 		avatarPath = "avatar/default.jpg";
-    		 	}
+    		 	
     		 	}
     		 	
     		 	 %>
