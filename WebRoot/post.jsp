@@ -22,13 +22,10 @@
 <body>
 
 <%
-    String post_id,sub_id;
+	String post_id;
     Boolean isStar=false;
     post_id = request.getParameter("postid");
     int totalFollowpostNum,totalPageNum,pageSize=2,pageNum;
-    sub_id = request.getParameter("subid");
-    if(sub_id==null||sub_id.equals(""))
-        sub_id="1";
     String temp;
     temp = request.getParameter("pageNum");
     if(temp==null||temp.equals(""))
@@ -63,7 +60,7 @@
     
     
     String title,author,content,postTime;
-    String subforum_id="",subforum_title="";
+    String sub_id="",subforum_title="";
     String mainforum_id="",mainforum_title="";
     String user_sex="",authorID="",post_type="0",post_isTop="0";
     int replyNum,viewNum;
@@ -90,7 +87,6 @@
         post_isTop=rs.getString("post.isTop");
         post_type=rs.getString("post_type");
 
-        subforum_id=rs.getString("sub_forum.id");
         subforum_title=rs.getString("sub_forum.sub_forum_title");
         mainforum_id=rs.getString("main_forum.id");
         mainforum_title=rs.getString("main_forum.title");
@@ -144,8 +140,8 @@
                     <div style="margin-left:20px" >
                         <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;回复数:<%=replyNum%> &nbsp;|&nbsp;<span>发表于:<%=postTime%></span>
                         <%
-                            String post_update_url="updatePost.jsp?userid=1"+"&postid="+post_id;
-                            String post_delete_url="deletePostServlet?userid=1"+"&postid="+post_id+"&subid="+sub_id;
+                            String post_update_url="updatePost.jsp?postid="+post_id;
+                            String post_delete_url="deletePostServlet?postid="+post_id+"&subid="+sub_id;
                         %>
                         <strong style=" float:right;margin-right:10px">
                             <span class="badge" style="background: #ff6927;width: 50px;">楼主</span>
@@ -298,8 +294,8 @@
                 <div class="reply-time">
                     <span style="color: gray">回复于:<%=follow_time%></span>
                     <%
-                        String followpost_update_url="updateFollowpost.jsp?userid=1"+"&postid="+post_id+"&followpostid="+followpostId;
-                        String followpost_delete_url="deleteFollowpostServlet?userid=1"+"&postid="+post_id+"&followpostid="+followpostId;
+                        String followpost_update_url="updateFollowpost.jsp?postid="+post_id+"&followpostid="+followpostId;
+                        String followpost_delete_url="deleteFollowpostServlet?postid="+post_id+"&followpostid="+followpostId;
 
                     %>
                     <div style="float:right;margin-right:10px">

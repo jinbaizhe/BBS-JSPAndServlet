@@ -127,7 +127,7 @@ public class Validate {
                 String postAuthorID=rs.getString("postAuthor");
                 String followpostAuthorID=rs.getString("followpostAuthor");
                 String subid=rs.getString("sub_id");
-                if(postAuthorID.equals(user.getId())||followpostAuthorID.equals(user.getId())||isAdmin(user,subid))
+                if(postAuthorID.equals(user.getId()+"")||followpostAuthorID.equals(user.getId()+"")||isAdmin(user,subid))
                     isValid=true;
             }
             rs.close();
